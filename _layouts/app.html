@@ -102,7 +102,7 @@ layout: default
             </dl>
             <div class="info-links">
               <a href="{{ app.url | append: 'privacy/' | relative_url }}"><i class="bi bi-shield-lock"></i>Privacy policy</a>
-              <a href="mailto:{{ site.email }}?subject={{ app.title | uri_escape }}%20support"><i class="bi bi-life-preserver"></i>Support</a>
+              <a href="mailto:{{ app.support_email | default: site.email }}?subject={{ app.title | uri_escape }}%20support"><i class="bi bi-life-preserver"></i>Support</a>
               {% if app.status == 'live' %}<a href="{{ play_url }}" rel="noopener"><i class="bi bi-google-play"></i>Google Play page</a>{% endif %}
             </div>
           </div>

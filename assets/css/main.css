@@ -521,7 +521,7 @@ a { text-underline-offset: .2em; }
 .footer-about { max-width: 26rem; margin-top: 1rem; }
 .footer-title { font-family: var(--font-mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; color: var(--bs-secondary-color); margin-bottom: 1rem; font-weight: 500; }
 .footer-links li { margin-bottom: .55rem; }
-.footer-links a { color: var(--bs-body-color); text-decoration: none; display: inline-flex; align-items: center; gap: .35rem; }
+.footer-links a { color: var(--bs-body-color); text-decoration: none; display: inline; }
 .footer-links a:hover { color: var(--brand-ink); }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: .85rem; }
 

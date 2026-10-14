@@ -4,6 +4,8 @@ layout: default
 {% assign app = site.apps | where: 'slug', page.app | first %}
 {% assign p = app.privacy %}
 {% assign updated = p.updated | default: app.updated %}
+{% assign custom = content | strip %}
+{% assign contact_email = app.support_email | default: site.email %}
 
 <section class="page-hero">
   <div class="container">
@@ -22,6 +24,9 @@ layout: default
 <section class="section pt-0">
   <div class="container">
     <div class="prose">
+      {% if custom != "" %}
+      {{ content }}
+      {% else %}
       <p>This privacy policy explains how <strong class="notranslate" translate="no">{{ app.title }}</strong>
       (the “{% if app.type == 'game' %}Game{% else %}App{% endif %}”), developed by
       <span class="notranslate" translate="no">iakimlabs</span> (“we”, “us”), handles information when you use it on your Android device.</p>
@@ -71,7 +76,8 @@ layout: default
 
       <h2>Contact</h2>
       <p>If you have any questions about this privacy policy, contact us at
-      <a class="notranslate" translate="no" href="mailto:{{ site.email }}?subject={{ app.title | uri_escape }}%20privacy">{{ site.email }}</a>.</p>
+      <a class="notranslate" translate="no" href="mailto:{{ contact_email }}?subject={{ app.title | uri_escape }}%20privacy">{{ contact_email }}</a>.</p>
+      {% endif %}
     </div>
   </div>
 </section>
