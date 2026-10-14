@@ -1,89 +1,46 @@
-# iakimlabs.com
+<div align="center">
 
-Сайт студии на **GitHub Pages + Jekyll + Bootstrap 5**. Сборка не нужна: GitHub сам собирает сайт при каждом push.
+<img src="assets/img/logo-512.png" width="96" alt="iakimlabs logo">
 
-## Структура
+# iakimlabs
 
-```
-_config.yml            настройки сайта (название, email, домен)
-_data/
-  studio.yml           тексты «о студии», услуги, принципы, имя основателя
-  navigation.yml       пункты меню
-  languages.yml        языки в меню перевода (Google Translate)
-  statuses.yml         статусы приложений (On Google Play, Closed testing…)
-_apps/                 ← одно приложение = один .md файл
-  mousecrumbs.md
-apps/
-  index.html           каталог (фильтры + поиск)
-  mousecrumbs/privacy.md   страница политики конфиденциальности
-assets/
-  apps/<slug>/         иконка и скриншоты приложения
-  css/main.css         стили (цвета — переменные в начале файла)
-  js/main.js           тема, перевод, фильтры, форма
-index.html, testing.html, about.html, contact.html, privacy.md, 404.html
-CNAME                  iakimlabs.com
-```
+**Mobile games & apps for Android**
 
-## Как добавить приложение (3 шага)
+An independent studio that designs, builds and publishes small, polished Android games and apps — and helps other developers get through Google Play closed testing.
 
-1. **Скопируйте** `_apps/mousecrumbs.md` → `_apps/<slug>.md` (slug — латиницей, например `screenscan`).
-   Заполните поля в шапке: `title`, `tagline`, `type: game|app`, `status`, `package`, `features`, `privacy` и т.д.
-   Под шапкой — описание в Markdown.
-2. **Положите картинки** в `assets/apps/<slug>/`: `icon.png` (512×512) и скриншоты, затем пропишите пути в `icon:` и `screenshots:`.
-3. **Создайте страницу политики** `apps/<slug>/privacy.md`:
-   ```yaml
-   ---
-   layout: privacy
-   app: <slug>
-   permalink: /apps/<slug>/privacy/
-   ---
-   ```
+[**iakimlabs.com**](https://iakimlabs.com) · [Apps & Games](https://iakimlabs.com/apps/) · [Closed testing](https://iakimlabs.com/testing/) · [Contact](https://iakimlabs.com/contact/)
 
-Приложение автоматически появится в каталоге, на главной (если `featured: true`), в футере и в sitemap.
-Его страница: `https://iakimlabs.com/apps/<slug>/`, политика: `https://iakimlabs.com/apps/<slug>/privacy/` — эту ссылку указываете в Play Console.
+</div>
 
-**Статусы:** `live` (кнопка «Get it on Google Play»), `closed-testing` (кнопки «Become a tester» / «Tester link»), `in-development`, `coming-soon`.
-Ссылки на Google Play строятся из `package` автоматически.
+---
 
-## Публикация на GitHub Pages
+## Our games & apps
 
-1. Создайте репозиторий **`iakimlabs.github.io`** в аккаунте `iakimlabs` и загрузите туда эти файлы.
-2. *Settings → Pages*: Source = **Deploy from a branch**, ветка `main`, папка `/ (root)`.
-3. *Settings → Pages → Custom domain*: `iakimlabs.com` (файл `CNAME` уже есть). После проверки DNS включите **Enforce HTTPS**.
+| | |
+|---|---|
+| <img src="assets/apps/mousecrumbs/icon.png" width="64" alt="Mouse Crumbs icon"> | **[Mouse Crumbs](https://iakimlabs.com/apps/mousecrumbs/)** — a gentle offline game where you feed a little mouse, ring a bell and watch it explore. No ads, no accounts, no purchases. 21 languages. *Now in closed testing on Google Play.* |
 
-### DNS у регистратора домена
+More games and apps are on the way.
 
-| Тип | Имя | Значение |
-|-----|-----|----------|
-| A | @ | 185.199.108.153 |
-| A | @ | 185.199.109.153 |
-| A | @ | 185.199.110.153 |
-| A | @ | 185.199.111.153 |
-| AAAA | @ | 2606:50c0:8000::153 |
-| AAAA | @ | 2606:50c0:8001::153 |
-| AAAA | @ | 2606:50c0:8002::153 |
-| AAAA | @ | 2606:50c0:8003::153 |
-| CNAME | www | iakimlabs.github.io |
+## What we do
 
-Рекомендуется также подтвердить домен в *GitHub → Settings → Pages → Verified domains* (TXT-запись), чтобы его нельзя было привязать к чужому репозиторию.
+- 🎮 **Mobile games** — casual and arcade games for Android that are easy to pick up and hard to put down.
+- 📱 **Mobile apps** — useful tools with clean interfaces and careful attention to detail.
+- 👥 **Closed testing for Google Play** — engaged testers for the 12-testers / 14-days requirement for new personal developer accounts, with daily usage and honest feedback. [How it works →](https://iakimlabs.com/testing/)
+- 🚀 **Publishing support** — store listing, privacy policy page and a release checklist for your first Google Play launch.
 
-## Локальный просмотр (необязательно)
+## Principles
 
-```bash
-bundle install
-bundle exec jekyll serve
-# http://localhost:4000
-```
+- **Android first** — designed for different screens, devices and Android versions.
+- **Small and polished** — fewer features, done properly.
+- **Respect for players** — clear privacy policies and only the data an app really needs.
+- **Listening to feedback** — testers and players shape every update.
 
-## Перевод
+## Get in touch
 
-Меню с иконкой 🌐 — перевод через Google Translate. Скрипт Google загружается **только** когда выбран язык, отличный от английского
-(выбор хранится в cookie `googtrans`). Названия бренда и приложений помечены `notranslate`, чтобы не переводились.
-Список языков — в `_data/languages.yml`.
+Need testers for your first release, or just want to say hello?
+Write to **[iakimlabs@gmail.com](mailto:iakimlabs@gmail.com)** or use the [contact form](https://iakimlabs.com/contact/).
 
-## Перед запуском проверьте
+---
 
-- [ ] `_apps/mousecrumbs.md`: реальный `package`, `min_android`, описание геймплея (места помечены `TODO`)
-- [ ] Блок `privacy` в `mousecrumbs.md` соответствует тому, что реально делает игра (реклама, аналитика, сбор данных)
-- [ ] Тексты в `_data/studio.yml` (о студии, услуги)
-- [ ] Скриншоты в `assets/apps/mousecrumbs/`
+<sub>Website source · built with Jekyll and Bootstrap 5 · technical notes live in [`docs/`](docs/SITE-GUIDE.md) · Google Play and the Google Play logo are trademarks of Google LLC.</sub>
