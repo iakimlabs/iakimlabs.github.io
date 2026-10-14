@@ -1,5 +1,7 @@
 # iakimlabs.com — руководство по сайту (техническая документация)
 
+🇬🇧 [English version](SITE-GUIDE.en.md)
+
 Сайт студии на **GitHub Pages + Jekyll + Bootstrap 5**. Сборка не нужна: GitHub сам собирает сайт при каждом push.
 
 ## Структура
@@ -38,6 +40,9 @@ CNAME                  iakimlabs.com
    permalink: /apps/<slug>/privacy/
    ---
    ```
+   - **Вариант A — свой текст:** напишите политику на Markdown под шапкой (так сделано у Mouse Crumbs).
+   - **Вариант Б — по шаблону:** оставьте тело страницы пустым и заполните блок `privacy:` в файле приложения (`collects_personal_data`, `data`, `services`) — стандартный текст сгенерируется сам.
+   - Необязательные поля в файле приложения: `support_email` (отдельный адрес для приложения) и `privacy.updated` (дата вступления политики в силу).
 
 Приложение автоматически появится в каталоге, на главной (если `featured: true`), в футере и в sitemap.
 Его страница: `https://iakimlabs.com/apps/<slug>/`, политика: `https://iakimlabs.com/apps/<slug>/privacy/` — эту ссылку указываете в Play Console.
@@ -83,7 +88,9 @@ bundle exec jekyll serve
 
 ## Перед запуском проверьте
 
-- [ ] `_apps/mousecrumbs.md`: реальный `package`, `min_android`, описание геймплея (места помечены `TODO`)
-- [ ] Блок `privacy` в `mousecrumbs.md` соответствует тому, что реально делает игра (реклама, аналитика, сбор данных)
-- [ ] Тексты в `_data/studio.yml` (о студии, услуги)
-- [ ] Скриншоты в `assets/apps/mousecrumbs/`
+- [ ] В файле приложения реальные `package`, `min_android`, `version`, `updated` (как в сборке)
+- [ ] Политика соответствует тому, что реально делает приложение (реклама, аналитика, разрешения, сбор данных)
+- [ ] Иконка (512×512) и скриншоты лежат в `assets/apps/<slug>/`
+- [ ] В Play Console указан адрес политики: `https://iakimlabs.com/apps/<slug>/privacy/`
+- [ ] После релиза: `status: live`
+- [ ] Тексты в `_data/studio.yml` (о студии, услуги) актуальны

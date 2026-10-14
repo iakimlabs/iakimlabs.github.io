@@ -43,4 +43,4 @@ Write to **[iakimlabs@gmail.com](mailto:iakimlabs@gmail.com)** or use the [conta
 
 ---
 
-<sub>Website source · built with Jekyll and Bootstrap 5 · technical notes live in [`docs/`](docs/SITE-GUIDE.md) · Google Play and the Google Play logo are trademarks of Google LLC.</sub>
+<sub>Website source · built with Jekyll and Bootstrap 5 · technical notes live in [`docs/`](docs/SITE-GUIDE.en.md) · Google Play and the Google Play logo are trademarks of Google LLC.</sub>
