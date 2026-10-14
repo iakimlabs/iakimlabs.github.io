@@ -51,6 +51,24 @@ Its page is `https://iakimlabs.com/apps/<slug>/`, its policy is `https://iakimla
 **Statuses:** `live` ("Get it on Google Play" button), `closed-testing` ("Become a tester" / "Tester link" buttons), `in-development`, `coming-soon`.
 Google Play links are built from `package` automatically. When the app is released, just change `status` to `live`.
 
+### Adding iOS (or another platform)
+
+Apps without a `platforms` field are treated as Android-only. To add iOS, edit the app file only:
+
+```yaml
+platforms: [Android, iOS]
+android_status: live            # per-platform status (falls back to `status`)
+ios_status: testflight          # live | testflight | in-development | coming-soon
+ios_url: https://apps.apple.com/app/id0000000000        # when ios_status is live
+ios_testflight_url: https://testflight.apple.com/join/XXXX   # when ios_status is testflight
+min_ios: "16.0"
+```
+
+- Buttons, status badges, platform icons on cards and the **Android / iOS / In testing** catalog filters appear automatically (the platform filters show up only once an iOS app exists).
+- Status `testflight` = "TestFlight beta".
+- **Store badges:** the buttons are simple text placeholders. For the official look, download Google's and Apple's badge artwork, put it into `assets/img/badges/` and set `badges.google_play` / `badges.app_store` in `_config.yml`. Follow each store's badge guidelines.
+- When an iOS app goes live, add Apple's trademark line to the footer ("App Store is a service mark of Apple Inc.").
+
 ## Privacy policies
 
 - `/privacy/` — the hub: a list of all app policies (generated from the catalog) plus the policy of the website itself.

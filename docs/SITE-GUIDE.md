@@ -50,6 +50,24 @@ CNAME                  iakimlabs.com
 **Статусы:** `live` (кнопка «Get it on Google Play»), `closed-testing` (кнопки «Become a tester» / «Tester link»), `in-development`, `coming-soon`.
 Ссылки на Google Play строятся из `package` автоматически.
 
+### Добавление iOS (или другой платформы)
+
+Приложение без поля `platforms` считается только для Android. Чтобы добавить iOS, правьте только файл приложения:
+
+```yaml
+platforms: [Android, iOS]
+android_status: live            # статус по платформе (если нет — берётся `status`)
+ios_status: testflight          # live | testflight | in-development | coming-soon
+ios_url: https://apps.apple.com/app/id0000000000        # когда ios_status: live
+ios_testflight_url: https://testflight.apple.com/join/XXXX   # когда ios_status: testflight
+min_ios: "16.0"
+```
+
+- Кнопки, бейджи статусов, значки платформ на карточке и фильтры **Android / iOS / In testing** в каталоге появляются сами (фильтры платформ видны, только когда есть iOS-приложение).
+- Статус `testflight` = «TestFlight beta».
+- **Официальные бейджи магазинов:** сейчас кнопки — простые текстовые заглушки. Скачайте фирменные бейджи Google и Apple, положите в `assets/img/badges/` и укажите пути в `badges.google_play` / `badges.app_store` в `_config.yml`. Соблюдайте правила использования бейджей.
+- Когда iOS-приложение выйдет, добавьте в футер строку о товарном знаке Apple («App Store is a service mark of Apple Inc.»).
+
 ## Публикация на GitHub Pages
 
 1. Создайте репозиторий **`iakimlabs.github.io`** в аккаунте `iakimlabs` и загрузите туда эти файлы.

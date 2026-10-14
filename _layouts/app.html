@@ -22,23 +22,21 @@ layout: default
         <img class="app-icon app-icon--xl" src="{{ app.icon | relative_url }}" alt="{{ app.title }} icon" width="128" height="128">
         <div class="app-hero__text">
           <div class="d-flex flex-wrap gap-2 mb-2">
-            {% include status-badge.html status=app.status %}
+            {% if app.platforms and app.platforms.size > 1 %}
+              {% assign a_st = app.android_status | default: app.status %}
+              {% assign i_st = app.ios_status | default: 'coming-soon' %}
+              {% if app.platforms contains 'Android' %}{% include platform-status.html platform='Android' status=a_st %}{% endif %}
+              {% if app.platforms contains 'iOS' %}{% include platform-status.html platform='iOS' status=i_st %}{% endif %}
+            {% else %}
+              {% include status-badge.html status=app.status %}
+            {% endif %}
             <span class="chip"><i class="bi {% if app.type == 'game' %}bi-controller{% else %}bi-grid-1x2{% endif %}"></i>{% if app.type == 'game' %}Game{% else %}App{% endif %}{% if app.genre %} · {{ app.genre }}{% endif %}</span>
           </div>
           <h1 class="app-title notranslate" translate="no">{{ app.title }}</h1>
           <p class="app-tagline">{{ app.tagline }}</p>
 
           <div class="d-flex flex-wrap gap-2 mt-3">
-            {% if app.status == 'live' %}
-              <a class="btn btn-play" href="{{ play_url }}" rel="noopener">
-                <i class="bi bi-google-play"></i><span><small>Get it on</small>Google Play</span>
-              </a>
-            {% elsif app.status == 'closed-testing' %}
-              <a class="btn btn-brand btn-lg" href="{{ '/contact/' | relative_url }}?subject=Tester%20for%20{{ app.title | uri_escape }}"><i class="bi bi-person-plus me-2"></i>Become a tester</a>
-              <a class="btn btn-ghost btn-lg" href="{{ testing_url }}" rel="noopener" title="Works only for Google accounts already added to the test"><i class="bi bi-box-arrow-up-right me-2"></i>Tester link</a>
-            {% else %}
-              <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-2"></i>Coming soon</span>
-            {% endif %}
+            {% include store-buttons.html app=app %}
           </div>
         </div>
       </div>
@@ -93,7 +91,8 @@ layout: default
             <dl class="info-list">
               <div><dt>Type</dt><dd>{% if app.type == 'game' %}Game{% else %}App{% endif %}{% if app.genre %} · {{ app.genre }}{% endif %}</dd></div>
               {% if app.platforms %}<div><dt>Platform</dt><dd>{{ app.platforms | join: ', ' }}</dd></div>{% endif %}
-              {% if app.min_android %}<div><dt>Requires</dt><dd>Android {{ app.min_android }}+</dd></div>{% endif %}
+              {% if app.min_android %}<div><dt>{% if app.min_ios %}Android{% else %}Requires{% endif %}</dt><dd>{% if app.min_ios %}{{ app.min_android }}+{% else %}Android {{ app.min_android }}+{% endif %}</dd></div>{% endif %}
+              {% if app.min_ios %}<div><dt>{% if app.min_android %}iOS{% else %}Requires{% endif %}</dt><dd>{% if app.min_android %}{{ app.min_ios }}+{% else %}iOS {{ app.min_ios }}+{% endif %}</dd></div>{% endif %}
               {% if app.version %}<div><dt>Version</dt><dd>{{ app.version }}</dd></div>{% endif %}
               {% if app.updated %}<div><dt>Updated</dt><dd>{{ app.updated | date: '%b %-d, %Y' }}</dd></div>{% endif %}
               {% if app.languages %}<div><dt>Languages</dt><dd>{{ app.languages | join: ', ' }}</dd></div>{% endif %}
@@ -103,7 +102,9 @@ layout: default
             <div class="info-links">
               <a href="{{ app.url | append: 'privacy/' | relative_url }}"><i class="bi bi-shield-lock"></i>Privacy policy</a>
               <a href="mailto:{{ app.support_email | default: site.email }}?subject={{ app.title | uri_escape }}%20support"><i class="bi bi-life-preserver"></i>Support</a>
-              {% if app.status == 'live' %}<a href="{{ play_url }}" rel="noopener"><i class="bi bi-google-play"></i>Google Play page</a>{% endif %}
+              {% assign a_live = app.android_status | default: app.status %}
+              {% if a_live == 'live' %}<a href="{{ play_url }}" rel="noopener"><i class="bi bi-google-play"></i>Google Play page</a>{% endif %}
+              {% if app.ios_status == 'live' and app.ios_url %}<a href="{{ app.ios_url }}" rel="noopener"><i class="bi bi-apple"></i>App Store page</a>{% endif %}
             </div>
           </div>
         </aside>

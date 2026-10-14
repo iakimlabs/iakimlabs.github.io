@@ -320,8 +320,8 @@ a { text-underline-offset: .2em; }
   border: 1px solid var(--line); background: var(--surface-2); color: var(--bs-secondary-color);
 }
 .status--live { color: var(--brand-ink); background: color-mix(in srgb, var(--brand) 14%, transparent); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
-.status--closed-testing { color: #c98a00; background: rgba(245, 165, 36, .14); border-color: rgba(245, 165, 36, .35); }
-[data-bs-theme="dark"] .status--closed-testing { color: #ffc35a; }
+.status--closed-testing, .status--testflight { color: #c98a00; background: rgba(245, 165, 36, .14); border-color: rgba(245, 165, 36, .35); }
+[data-bs-theme="dark"] .status--closed-testing, [data-bs-theme="dark"] .status--testflight { color: #ffc35a; }
 .status--in-development { color: var(--brand-2); background: color-mix(in srgb, var(--brand-2) 14%, transparent); border-color: color-mix(in srgb, var(--brand-2) 35%, transparent); }
 
 /* ─── Catalog ──────────────────────────────────────────── */
@@ -564,3 +564,8 @@ font[style] { background: none !important; box-shadow: none !important; }
 .policy-item__text b { color: var(--bs-emphasis-color); font-family: var(--font-display); font-size: 1.1rem; }
 .policy-item__text small { color: var(--bs-secondary-color); font-size: .85rem; }
 .policy-item > i { color: var(--brand-ink); }
+
+/* ─── Multi-platform ───────────────────────────────────── */
+.app-card__platforms { display: inline-flex; gap: .4rem; font-size: .95rem; }
+.store-badge { display: inline-flex; align-items: center; }
+.store-badge img { height: 52px; width: auto; }

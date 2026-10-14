@@ -2,9 +2,9 @@
 #  iakimlabs.com — site settings
 # ───────────────────────────────────────────────
 title: iakimlabs
-tagline: Mobile games & apps for Android
+tagline: Mobile games & apps
 description: >-
-  iakimlabs is an independent studio crafting mobile games and apps for Android,
+  iakimlabs is an independent studio crafting mobile games and apps — starting on Android —
   and helping developers pass Google Play closed testing before their first release.
 url: "https://iakimlabs.com"
 baseurl: ""
@@ -21,6 +21,13 @@ social:
   name: iakimlabs
   links:
     - https://github.com/iakimlabs
+
+# Official store badge images (optional). Download them from Google's and Apple's brand
+# resources, put them in assets/img/badges/ and set the paths here; until then simple
+# text buttons are shown.
+badges:
+  google_play: ""     # e.g. /assets/img/badges/google-play.svg
+  app_store: ""       # e.g. /assets/img/badges/app-store.svg
 
 # Every app is one Markdown file in _apps/
 collections:

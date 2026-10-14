@@ -1,13 +1,15 @@
 ---
 layout: default
 title: Apps & Games
-description: All games and apps by iakimlabs for Android — released, in testing and in development.
+description: All mobile games and apps by iakimlabs — released, in testing and in development.
 permalink: /apps/
 ---
 {% assign apps_sorted = site.apps | sort: 'order' %}
 {% assign games = apps_sorted | where: 'type', 'game' %}
 {% assign tools = apps_sorted | where: 'type', 'app' %}
-{% assign testing = apps_sorted | where: 'status', 'closed-testing' %}
+{% assign testing = apps_sorted | where_exp: "a", "a.status == 'closed-testing' or a.android_status == 'closed-testing' or a.ios_status == 'testflight'" %}
+{% assign android_apps = apps_sorted | where_exp: "a", "a.platforms == nil or a.platforms contains 'Android'" %}
+{% assign ios_apps = apps_sorted | where_exp: "a", "a.platforms contains 'iOS'" %}
 
 <section class="page-hero">
   <div class="container">
@@ -24,7 +26,11 @@ permalink: /apps/
         <button class="filter active" type="button" data-filter="all">All <span>{{ apps_sorted.size }}</span></button>
         <button class="filter" type="button" data-filter="game"><i class="bi bi-controller"></i>Games <span>{{ games.size }}</span></button>
         <button class="filter" type="button" data-filter="app"><i class="bi bi-grid-1x2"></i>Apps <span>{{ tools.size }}</span></button>
-        <button class="filter" type="button" data-filter="closed-testing"><i class="bi bi-bug"></i>In testing <span>{{ testing.size }}</span></button>
+        <button class="filter" type="button" data-filter="testing"><i class="bi bi-bug"></i>In testing <span>{{ testing.size }}</span></button>
+        {% if ios_apps.size > 0 %}
+        <button class="filter" type="button" data-filter="android"><i class="bi bi-android2"></i>Android <span>{{ android_apps.size }}</span></button>
+        <button class="filter" type="button" data-filter="ios"><i class="bi bi-apple"></i>iOS <span>{{ ios_apps.size }}</span></button>
+        {% endif %}
       </div>
       <label class="search">
         <i class="bi bi-search"></i>
@@ -43,4 +49,4 @@ permalink: /apps/
   </div>
 </section>
 
-{% include cta.html title="Building an Android app yourself?" text="We can help with closed testing and getting your first release onto Google Play." %}
+{% include cta.html title="Building a mobile app yourself?" text="We can help with closed testing and getting your first release onto Google Play." %}

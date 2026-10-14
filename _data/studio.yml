@@ -7,7 +7,7 @@ founder:
 
 about_short: >-
   We are a small independent studio that designs, builds and publishes
-  games and apps for Android — from the first prototype to the Google Play listing.
+  games and apps for mobile — from the first prototype to the store listing. We start on Android, with iOS next.
 
 about_long: |
   iakimlabs started as a side project of a web developer who wanted to ship
@@ -25,8 +25,8 @@ about_long: |
 
 values:
   - icon: bi-phone
-    title: Android first
-    text: We design for Android from day one — different screens, devices and Android versions.
+    title: Built for real phones
+    text: We design for different screens, devices and OS versions from day one — Android now, iOS next.
   - icon: bi-feather
     title: Small and polished
     text: Fewer features, done properly. Fast to load, easy to understand, pleasant to use.
@@ -40,7 +40,7 @@ values:
 services:
   - icon: bi-controller
     title: Mobile games
-    text: Casual and arcade games for Android — easy to pick up, hard to put down.
+    text: Casual and arcade games for phones and tablets — easy to pick up, hard to put down.
   - icon: bi-grid-1x2
     title: Mobile apps
     text: Useful tools and utilities with clean interfaces and careful attention to detail.

@@ -1,0 +1,1 @@
+{% assign s = site.data.statuses[include.status] %}{% if s %}<span class="status status--{{ include.status }}"><i class="bi {% if include.platform == 'iOS' %}bi-apple{% else %}bi-android2{% endif %}"></i>{{ include.platform }} · {{ s.label }}</span>{% endif %}

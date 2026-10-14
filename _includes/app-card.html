@@ -1,6 +1,8 @@
 {% assign app = include.app %}
+{% capture all_status %}{{ app.status }} {{ app.android_status }} {{ app.ios_status }}{% endcapture %}
+{% capture plat_list %}{% if app.platforms %}{{ app.platforms | join: ' ' | downcase }}{% else %}android{% endif %}{% endcapture %}
 <article class="app-card" style="--app-accent: {{ app.accent | default: '#3ddc84' }}"
-  data-app-card data-type="{{ app.type }}" data-status="{{ app.status }}"
+  data-app-card data-type="{{ app.type }}" data-status="{{ all_status | strip }}" data-platforms="{{ plat_list }}"
   data-search="{{ app.title | downcase }} {{ app.tagline | downcase }} {{ app.genre | downcase }} {{ app.type }}">
   <div class="app-card__glow" aria-hidden="true"></div>
   <div class="app-card__top">
@@ -12,6 +14,7 @@
   <div class="app-card__meta">
     <span><i class="bi {% if app.type == 'game' %}bi-controller{% else %}bi-grid-1x2{% endif %}"></i>{% if app.type == 'game' %}Game{% else %}App{% endif %}</span>
     {% if app.genre %}<span>{{ app.genre }}</span>{% endif %}
+    {% if app.platforms and app.platforms.size > 1 %}<span class="app-card__platforms" title="{{ app.platforms | join: ', ' }}">{% if app.platforms contains 'Android' %}<i class="bi bi-android2"></i>{% endif %}{% if app.platforms contains 'iOS' %}<i class="bi bi-apple"></i>{% endif %}</span>{% endif %}
     <span class="ms-auto app-card__arrow"><i class="bi bi-arrow-up-right"></i></span>
   </div>
 </article>

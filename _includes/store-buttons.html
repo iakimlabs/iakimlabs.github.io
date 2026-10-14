@@ -1,0 +1,55 @@
+{% comment %}
+  Store / tester buttons for an app page. Usage: {% include store-buttons.html app=page %}
+  Per-platform status: android_status / ios_status (Android falls back to `status`, iOS to `coming-soon`).
+  Official store badge images can be set in _config.yml (badges.google_play / badges.app_store).
+{% endcomment %}
+{% assign app = include.app %}
+{% assign has_android = true %}
+{% assign has_ios = false %}
+{% if app.platforms %}
+  {% unless app.platforms contains 'Android' %}{% assign has_android = false %}{% endunless %}
+  {% if app.platforms contains 'iOS' %}{% assign has_ios = true %}{% endif %}
+{% endif %}
+{% assign a_status = app.android_status | default: app.status %}
+{% assign i_status = app.ios_status | default: 'coming-soon' %}
+{% assign multi = false %}
+{% if has_android and has_ios %}{% assign multi = true %}{% endif %}
+{% assign tester_cta = false %}
+
+{% if has_android %}
+  {% if a_status == 'live' %}
+    {% if site.badges.google_play and site.badges.google_play != '' %}
+      <a class="store-badge" href="{{ play_url }}" rel="noopener"><img src="{{ site.badges.google_play | relative_url }}" alt="Get it on Google Play" height="52"></a>
+    {% else %}
+      <a class="btn btn-play" href="{{ play_url }}" rel="noopener"><i class="bi bi-google-play"></i><span><small>Get it on</small>Google Play</span></a>
+    {% endif %}
+  {% elsif a_status == 'closed-testing' %}
+    {% assign tester_cta = true %}
+    <a class="btn btn-brand btn-lg" href="{{ '/contact/' | relative_url }}?subject=Tester%20for%20{{ app.title | uri_escape }}"><i class="bi bi-person-plus me-2"></i>Become a tester</a>
+    <a class="btn btn-ghost btn-lg" href="{{ testing_url }}" rel="noopener" title="Works only for Google accounts already added to the test"><i class="bi bi-box-arrow-up-right me-2"></i>{% if multi %}Android tester link{% else %}Tester link{% endif %}</a>
+  {% elsif multi %}
+    <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-android2 me-2"></i>Android · soon</span>
+  {% endif %}
+{% endif %}
+
+{% if has_ios %}
+  {% if i_status == 'live' and app.ios_url %}
+    {% if site.badges.app_store and site.badges.app_store != '' %}
+      <a class="store-badge" href="{{ app.ios_url }}" rel="noopener"><img src="{{ site.badges.app_store | relative_url }}" alt="Download on the App Store" height="52"></a>
+    {% else %}
+      <a class="btn btn-play" href="{{ app.ios_url }}" rel="noopener"><i class="bi bi-apple"></i><span><small>Download on the</small>App Store</span></a>
+    {% endif %}
+  {% elsif i_status == 'testflight' %}
+    {% if app.ios_testflight_url %}
+      <a class="btn btn-brand btn-lg" href="{{ app.ios_testflight_url }}" rel="noopener"><i class="bi bi-apple me-2"></i>Join TestFlight beta</a>
+    {% elsif tester_cta == false %}
+      <a class="btn btn-brand btn-lg" href="{{ '/contact/' | relative_url }}?subject=iOS%20tester%20for%20{{ app.title | uri_escape }}"><i class="bi bi-person-plus me-2"></i>Become a tester</a>
+    {% endif %}
+  {% else %}
+    <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-apple me-2"></i>iOS · soon</span>
+  {% endif %}
+{% endif %}
+
+{% if multi == false and has_android and a_status != 'live' and a_status != 'closed-testing' %}
+  <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-2"></i>Coming soon</span>
+{% endif %}

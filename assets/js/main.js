@@ -96,7 +96,9 @@
       var q = (input.value || '').trim().toLowerCase();
       var shown = 0;
       cards.forEach(function (c) {
-        var okFilter = filter === 'all' || c.dataset.type === filter || c.dataset.status === filter;
+        var has = function (attr, word) { return (' ' + (c.dataset[attr] || '') + ' ').indexOf(' ' + word + ' ') !== -1; };
+        var okFilter = filter === 'all' || c.dataset.type === filter || has('platforms', filter) ||
+          (filter === 'testing' && (has('status', 'closed-testing') || has('status', 'testflight')));
         var okSearch = !q || c.dataset.search.indexOf(q) !== -1;
         var show = okFilter && okSearch;
         c.hidden = !show;

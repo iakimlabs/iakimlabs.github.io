@@ -11,3 +11,6 @@ in-development:
 coming-soon:
   label: Coming soon
   icon: bi-hourglass-split
+testflight:
+  label: TestFlight beta
+  icon: bi-airplane
