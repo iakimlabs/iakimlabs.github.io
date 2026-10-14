@@ -1,0 +1,46 @@
+---
+layout: default
+title: Apps & Games
+description: All games and apps by iakimlabs for Android — released, in testing and in development.
+permalink: /apps/
+---
+{% assign apps_sorted = site.apps | sort: 'order' %}
+{% assign games = apps_sorted | where: 'type', 'game' %}
+{% assign tools = apps_sorted | where: 'type', 'app' %}
+{% assign testing = apps_sorted | where: 'status', 'closed-testing' %}
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Catalog</p>
+    <h1 class="page-title">Apps &amp; Games</h1>
+    <p class="lead page-lead">Everything we've released or are working on — tap a card for details, screenshots and download links.</p>
+  </div>
+</section>
+
+<section class="section pt-0">
+  <div class="container">
+    <div class="catalog-bar" data-catalog>
+      <div class="filters" role="group" aria-label="Filter">
+        <button class="filter active" type="button" data-filter="all">All <span>{{ apps_sorted.size }}</span></button>
+        <button class="filter" type="button" data-filter="game"><i class="bi bi-controller"></i>Games <span>{{ games.size }}</span></button>
+        <button class="filter" type="button" data-filter="app"><i class="bi bi-grid-1x2"></i>Apps <span>{{ tools.size }}</span></button>
+        <button class="filter" type="button" data-filter="closed-testing"><i class="bi bi-bug"></i>In testing <span>{{ testing.size }}</span></button>
+      </div>
+      <label class="search">
+        <i class="bi bi-search"></i>
+        <input type="search" placeholder="Search apps…" aria-label="Search apps" data-search>
+      </label>
+    </div>
+
+    <div class="app-grid" data-app-grid>
+      {% for a in apps_sorted %}{% include app-card.html app=a %}{% endfor %}
+    </div>
+
+    <div class="empty-state d-none" data-empty>
+      <i class="bi bi-search"></i>
+      <p class="mb-0">Nothing found. Try another filter or search term.</p>
+    </div>
+  </div>
+</section>
+
+{% include cta.html title="Building an Android app yourself?" text="We can help with closed testing and getting your first release onto Google Play." %}

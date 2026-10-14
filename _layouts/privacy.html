@@ -1,0 +1,77 @@
+---
+layout: default
+---
+{% assign app = site.apps | where: 'slug', page.app | first %}
+{% assign p = app.privacy %}
+{% assign updated = p.updated | default: app.updated %}
+
+<section class="page-hero">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ '/apps/' | relative_url }}">Apps &amp; Games</a></li>
+        <li class="breadcrumb-item"><a class="notranslate" translate="no" href="{{ app.url | relative_url }}">{{ app.title }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Privacy policy</li>
+      </ol>
+    </nav>
+    <h1 class="page-title"><span class="notranslate" translate="no">{{ app.title }}</span> privacy policy</h1>
+    <p class="text-body-secondary mb-0">Last updated: {{ updated | date: '%B %-d, %Y' }}</p>
+  </div>
+</section>
+
+<section class="section pt-0">
+  <div class="container">
+    <div class="prose">
+      <p>This privacy policy explains how <strong class="notranslate" translate="no">{{ app.title }}</strong>
+      (the “{% if app.type == 'game' %}Game{% else %}App{% endif %}”), developed by
+      <span class="notranslate" translate="no">iakimlabs</span> (“we”, “us”), handles information when you use it on your Android device.</p>
+
+      <h2>Information we collect</h2>
+      {% if p.collects_personal_data %}
+        <p>The {% if app.type == 'game' %}Game{% else %}App{% endif %} collects the following information:</p>
+        <ul>
+          {% for d in p.data %}<li><strong>{{ d.name }}</strong> — {{ d.purpose }}</li>{% endfor %}
+        </ul>
+        <p>We use this information only for the purposes listed above. We do not sell your personal data.</p>
+      {% else %}
+        <p>The {% if app.type == 'game' %}Game{% else %}App{% endif %} does <strong>not</strong> collect, store or share any personal
+        information. We do not require you to create an account, and we do not ask for your name,
+        email address, location or contacts.</p>
+        {% if p.data and p.data.size > 0 %}
+        <p>The following non-personal technical information may be processed:</p>
+        <ul>
+          {% for d in p.data %}<li><strong>{{ d.name }}</strong> — {{ d.purpose }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+        <p>Game progress and settings are stored locally on your device and are removed when you uninstall the {% if app.type == 'game' %}Game{% else %}App{% endif %}.</p>
+      {% endif %}
+
+      {% if p.services and p.services.size > 0 %}
+      <h2>Third-party services</h2>
+      <p>The {% if app.type == 'game' %}Game{% else %}App{% endif %} uses the following third-party services, which may collect information under their own privacy policies:</p>
+      <ul>
+        {% for s in p.services %}<li><a href="{{ s.url }}" rel="noopener">{{ s.name }}</a></li>{% endfor %}
+      </ul>
+      {% endif %}
+
+      <h2>Children's privacy</h2>
+      <p>We do not knowingly collect personal information from children. If you believe a child has
+      provided us with personal information, please contact us and we will delete it.</p>
+
+      <h2>Security</h2>
+      <p>We take reasonable measures to protect any information processed by the {% if app.type == 'game' %}Game{% else %}App{% endif %}. However, no method of
+      electronic storage or transmission is 100% secure.</p>
+
+      <h2>Your rights</h2>
+      <p>You can request access to, or deletion of, any data related to you by contacting us at the email below.
+      You can also stop all processing at any time by uninstalling the {% if app.type == 'game' %}Game{% else %}App{% endif %}.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>We may update this policy from time to time. Changes will be published on this page with a new “Last updated” date.</p>
+
+      <h2>Contact</h2>
+      <p>If you have any questions about this privacy policy, contact us at
+      <a class="notranslate" translate="no" href="mailto:{{ site.email }}?subject={{ app.title | uri_escape }}%20privacy">{{ site.email }}</a>.</p>
+    </div>
+  </div>
+</section>

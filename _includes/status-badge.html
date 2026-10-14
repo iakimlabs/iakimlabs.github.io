@@ -1,0 +1,1 @@
+{% assign s = site.data.statuses[include.status] %}{% if s %}<span class="status status--{{ include.status }}"><i class="bi {{ s.icon }}"></i>{{ s.label }}</span>{% endif %}

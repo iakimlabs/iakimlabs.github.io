@@ -1,0 +1,128 @@
+---
+layout: default
+---
+{% assign app = page %}
+{% assign play_url = app.play_url %}
+{% if play_url == nil and app.package %}{% capture play_url %}https://play.google.com/store/apps/details?id={{ app.package }}{% endcapture %}{% endif %}
+{% assign testing_url = app.testing_url %}
+{% if testing_url == nil and app.package %}{% capture testing_url %}https://play.google.com/apps/testing/{{ app.package }}{% endcapture %}{% endif %}
+
+<div class="app-page" style="--app-accent: {{ app.accent | default: '#3ddc84' }}">
+  <section class="app-hero">
+    <div class="app-hero__bg" aria-hidden="true"></div>
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ '/apps/' | relative_url }}">Apps &amp; Games</a></li>
+          <li class="breadcrumb-item active notranslate" translate="no" aria-current="page">{{ app.title }}</li>
+        </ol>
+      </nav>
+
+      <div class="app-hero__main">
+        <img class="app-icon app-icon--xl" src="{{ app.icon | relative_url }}" alt="{{ app.title }} icon" width="128" height="128">
+        <div class="app-hero__text">
+          <div class="d-flex flex-wrap gap-2 mb-2">
+            {% include status-badge.html status=app.status %}
+            <span class="chip"><i class="bi {% if app.type == 'game' %}bi-controller{% else %}bi-grid-1x2{% endif %}"></i>{% if app.type == 'game' %}Game{% else %}App{% endif %}{% if app.genre %} · {{ app.genre }}{% endif %}</span>
+          </div>
+          <h1 class="app-title notranslate" translate="no">{{ app.title }}</h1>
+          <p class="app-tagline">{{ app.tagline }}</p>
+
+          <div class="d-flex flex-wrap gap-2 mt-3">
+            {% if app.status == 'live' %}
+              <a class="btn btn-play" href="{{ play_url }}" rel="noopener">
+                <i class="bi bi-google-play"></i><span><small>Get it on</small>Google Play</span>
+              </a>
+            {% elsif app.status == 'closed-testing' %}
+              <a class="btn btn-brand btn-lg" href="{{ '/contact/' | relative_url }}?subject=Tester%20for%20{{ app.title | uri_escape }}"><i class="bi bi-person-plus me-2"></i>Become a tester</a>
+              <a class="btn btn-ghost btn-lg" href="{{ testing_url }}" rel="noopener" title="Works only for Google accounts already added to the test"><i class="bi bi-box-arrow-up-right me-2"></i>Tester link</a>
+            {% else %}
+              <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-2"></i>Coming soon</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pt-4">
+    <div class="container">
+      <!-- Screenshots -->
+      {% if app.screenshots and app.screenshots.size > 0 %}
+      <div class="shots" data-shots>
+        <div class="shots__track" tabindex="0" aria-label="Screenshots">
+          {% for s in app.screenshots %}
+          <figure class="shot"><img src="{{ s | relative_url }}" alt="{{ app.title }} screenshot {{ forloop.index }}" loading="lazy"></figure>
+          {% endfor %}
+        </div>
+        <button class="shots__nav shots__nav--prev" type="button" aria-label="Previous screenshots" data-shots-prev><i class="bi bi-chevron-left"></i></button>
+        <button class="shots__nav shots__nav--next" type="button" aria-label="Next screenshots" data-shots-next><i class="bi bi-chevron-right"></i></button>
+      </div>
+      {% else %}
+      <div class="shots-empty">
+        {% for i in (1..3) %}<div class="phone-ghost" aria-hidden="true"><img src="{{ app.icon | relative_url }}" alt="" width="56" height="56"></div>{% endfor %}
+        <p class="shots-empty__note"><i class="bi bi-image me-2"></i>Screenshots are coming soon</p>
+      </div>
+      {% endif %}
+
+      <div class="row g-4 g-lg-5 mt-1">
+        <div class="col-lg-8">
+          <div class="prose app-description">
+            {{ content }}
+          </div>
+
+          {% if app.features and app.features.size > 0 %}
+          <h2 class="section-title-sm mt-5">Highlights</h2>
+          <div class="row g-3">
+            {% for f in app.features %}
+            <div class="col-sm-6 col-xl-4">
+              <div class="feature">
+                <span class="feature__icon"><i class="bi {{ f.icon | default: 'bi-stars' }}"></i></span>
+                <h3 class="feature__title">{{ f.title }}</h3>
+                <p class="feature__text">{{ f.text }}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <aside class="col-lg-4">
+          <div class="info-card">
+            <h2 class="info-card__title">Information</h2>
+            <dl class="info-list">
+              <div><dt>Type</dt><dd>{% if app.type == 'game' %}Game{% else %}App{% endif %}{% if app.genre %} · {{ app.genre }}{% endif %}</dd></div>
+              {% if app.platforms %}<div><dt>Platform</dt><dd>{{ app.platforms | join: ', ' }}</dd></div>{% endif %}
+              {% if app.min_android %}<div><dt>Requires</dt><dd>Android {{ app.min_android }}+</dd></div>{% endif %}
+              {% if app.version %}<div><dt>Version</dt><dd>{{ app.version }}</dd></div>{% endif %}
+              {% if app.updated %}<div><dt>Updated</dt><dd>{{ app.updated | date: '%b %-d, %Y' }}</dd></div>{% endif %}
+              {% if app.languages %}<div><dt>Languages</dt><dd>{{ app.languages | join: ', ' }}</dd></div>{% endif %}
+              {% if app.price %}<div><dt>Price</dt><dd>{{ app.price }}</dd></div>{% endif %}
+              <div><dt>Developer</dt><dd class="notranslate" translate="no">iakimlabs</dd></div>
+            </dl>
+            <div class="info-links">
+              <a href="{{ app.url | append: 'privacy/' | relative_url }}"><i class="bi bi-shield-lock"></i>Privacy policy</a>
+              <a href="mailto:{{ site.email }}?subject={{ app.title | uri_escape }}%20support"><i class="bi bi-life-preserver"></i>Support</a>
+              {% if app.status == 'live' %}<a href="{{ play_url }}" rel="noopener"><i class="bi bi-google-play"></i>Google Play page</a>{% endif %}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  {% assign others = site.apps | sort: 'order' %}
+  {% if others.size > 1 %}
+  <section class="section pt-0">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title-sm mb-0">More from <span class="notranslate" translate="no">iakimlabs</span></h2>
+        <a class="link-arrow" href="{{ '/apps/' | relative_url }}">All apps <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="app-grid">
+        {% for a in others %}{% if a.url != page.url %}{% include app-card.html app=a %}{% endif %}{% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+</div>

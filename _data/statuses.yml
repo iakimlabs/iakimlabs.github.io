@@ -1,0 +1,13 @@
+# App status → label and icon shown on cards and app pages.
+live:
+  label: On Google Play
+  icon: bi-google-play
+closed-testing:
+  label: Closed testing
+  icon: bi-bug
+in-development:
+  label: In development
+  icon: bi-hammer
+coming-soon:
+  label: Coming soon
+  icon: bi-hourglass-split

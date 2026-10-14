@@ -1,0 +1,161 @@
+---
+layout: default
+title: Mobile games & apps for Android
+body_class: home
+---
+{% assign apps_sorted = site.apps | sort: 'order' %}
+{% assign featured = apps_sorted | where: 'featured', true %}
+
+<!-- ═══ Hero ═══ -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <p class="eyebrow"><span class="dot"></span>Independent Android studio</p>
+        <h1 class="hero__title">We craft <span class="text-gradient">games &amp; apps</span> for the phone in your pocket.</h1>
+        <p class="hero__lead">{{ site.data.studio.about_short }} We also run closed testing for developers preparing their first Google Play release.</p>
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <a class="btn btn-brand btn-lg" href="{{ '/apps/' | relative_url }}">Explore our apps <i class="bi bi-arrow-right ms-1"></i></a>
+          <a class="btn btn-ghost btn-lg" href="{{ '/testing/' | relative_url }}">Closed testing service</a>
+        </div>
+        <ul class="hero__facts">
+          <li><i class="bi bi-android2"></i>Android first</li>
+          <li><i class="bi bi-phone-vibrate"></i>Tested on real devices</li>
+          <li><i class="bi bi-shield-check"></i>Privacy-friendly</li>
+        </ul>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-visual" aria-hidden="true">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <div class="phone__screen">
+              <div class="phone__status"><span>9:41</span><span><i class="bi bi-reception-4"></i> <i class="bi bi-battery-full"></i></span></div>
+              <div class="phone__grid">
+                {% for a in apps_sorted limit: 4 %}
+                <div class="phone__app"><img src="{{ a.icon | relative_url }}" alt=""><span class="notranslate" translate="no">{{ a.title }}</span></div>
+                {% endfor %}
+                <div class="phone__app phone__app--soon"><span class="tile"><i class="bi bi-plus-lg"></i></span><span>Next</span></div>
+              </div>
+              {% assign hf = featured | first %}
+              {% if hf %}
+              <div class="phone__feature">
+                <img src="{{ hf.icon | relative_url }}" alt="">
+                <div><b class="notranslate" translate="no">{{ hf.title }}</b><small>{{ site.data.statuses[hf.status].label }} · {{ hf.genre }}</small></div>
+              </div>
+              {% endif %}
+              <div class="phone__lines"><span></span><span></span><span></span></div>
+              <div class="phone__card">
+                <span class="phone__card-label">Closed test</span>
+                <div class="progress-days">
+                  {% for i in (1..14) %}<span{% if i <= 9 %} class="on"{% endif %}></span>{% endfor %}
+                </div>
+                <span class="phone__card-meta">Day 9 of 14 · testers active</span>
+              </div>
+            </div>
+          </div>
+          <div class="float-chip float-chip--a"><i class="bi bi-people-fill"></i>12+ testers</div>
+          <div class="float-chip float-chip--b"><i class="bi bi-calendar-check"></i>14 days</div>
+          <div class="float-chip float-chip--c"><i class="bi bi-check2-circle"></i>Ready for production</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Featured apps ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Our work</p>
+        <h2 class="section-title">Apps &amp; games</h2>
+      </div>
+      <a class="link-arrow" href="{{ '/apps/' | relative_url }}">View all <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="app-grid">
+      {% for a in featured %}{% include app-card.html app=a %}{% endfor %}
+      <a class="app-card app-card--placeholder" href="{{ '/apps/' | relative_url }}">
+        <span class="placeholder-icon"><i class="bi bi-stars"></i></span>
+        <h3 class="app-card__title">More on the way</h3>
+        <p class="app-card__tagline">New games and apps are in development. Follow the catalog for updates.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Services ═══ -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">What we do</p>
+      <h2 class="section-title">From idea to Google Play</h2>
+      <p class="section-lead">We build our own products and help other independent developers launch theirs.</p>
+    </div>
+    <div class="row g-3">
+      {% for s in site.data.studio.services %}
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature feature--lg h-100{% if s.url %} feature--link{% endif %}">
+          <span class="feature__icon"><i class="bi {{ s.icon }}"></i></span>
+          <h3 class="feature__title">{% if s.url %}<a class="stretched-link" href="{{ s.url | relative_url }}">{{ s.title }}</a>{% else %}{{ s.title }}{% endif %}</h3>
+          <p class="feature__text">{{ s.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Closed testing teaser ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="testing-teaser">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-5">
+          <p class="eyebrow">Closed testing</p>
+          <h2 class="section-title">Your first release, without the 12-tester headache</h2>
+          <p class="text-body-secondary">New personal Google Play accounts must run a closed test with at least 12 testers for 14 days in a row before they can publish. We provide engaged testers who actually open your app every day and tell you what they think.</p>
+          <a class="btn btn-brand mt-2" href="{{ '/testing/' | relative_url }}">See how it works</a>
+        </div>
+        <div class="col-lg-7">
+          <ol class="steps">
+            <li class="step"><span class="step__num">01</span><div><h3>Share your test link</h3><p>Set up a closed testing track and send us the opt-in link.</p></div></li>
+            <li class="step"><span class="step__num">02</span><div><h3>Testers join</h3><p>We opt in more than 12 testers, so one drop-out won't reset your clock.</p></div></li>
+            <li class="step"><span class="step__num">03</span><div><h3>14 days of real use</h3><p>Daily sessions on different devices, plus written feedback.</p></div></li>
+            <li class="step"><span class="step__num">04</span><div><h3>Apply for production</h3><p>We help you answer Google's production access questions.</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ About teaser ═══ -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5">
+        <p class="eyebrow">About the studio</p>
+        <h2 class="section-title">Small team, big attention to detail</h2>
+        <p class="text-body-secondary">{{ site.data.studio.about_short }}</p>
+        <a class="link-arrow" href="{{ '/about/' | relative_url }}">More about us <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="col-lg-7">
+        <div class="row g-3">
+          {% for v in site.data.studio.values %}
+          <div class="col-sm-6">
+            <div class="value">
+              <i class="bi {{ v.icon }}"></i>
+              <div><h3>{{ v.title }}</h3><p>{{ v.text }}</p></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pt-5"></div>
+{% include cta.html %}

@@ -1,0 +1,15 @@
+<section class="section pt-0">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <p class="eyebrow">Let's work together</p>
+        <h2 class="cta-band__title">{{ include.title | default: "Need testers for your first Google Play release?" }}</h2>
+        <p class="mb-0 text-body-secondary">{{ include.text | default: "Tell us about your app — we'll reply within a day with the next steps." }}</p>
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-brand btn-lg" href="{{ '/contact/' | relative_url }}">Get in touch</a>
+        <a class="btn btn-ghost btn-lg" href="{{ '/testing/' | relative_url }}">How testing works</a>
+      </div>
+    </div>
+  </div>
+</section>

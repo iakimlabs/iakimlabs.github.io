@@ -1,0 +1,68 @@
+---
+layout: default
+title: Contact
+description: Contact iakimlabs about our apps, closed testing or cooperation.
+permalink: /contact/
+---
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Contact</p>
+    <h1 class="page-title">Let's talk</h1>
+    <p class="lead page-lead">Questions about our apps, a closed-testing request or an idea for cooperation — write to us, we usually reply within one business day.</p>
+  </div>
+</section>
+
+<section class="section pt-0">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <form class="contact-form" data-mail-form data-mail-to="{{ site.email }}">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label class="form-label" for="cf-name">Your name</label>
+              <input class="form-control" id="cf-name" name="name" required autocomplete="name">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label" for="cf-topic">Topic</label>
+              <select class="form-select" id="cf-topic" name="topic">
+                <option>Closed testing request</option>
+                <option>Become a tester</option>
+                <option>App support</option>
+                <option>Cooperation</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="cf-subject">Subject</label>
+              <input class="form-control" id="cf-subject" name="subject" placeholder="e.g. Closed testing for my puzzle game">
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="cf-msg">Message</label>
+              <textarea class="form-control" id="cf-msg" name="message" rows="6" required placeholder="Tell us about your app: name, link or package, planned start date…"></textarea>
+            </div>
+            <div class="col-12 d-flex flex-wrap align-items-center gap-3">
+              <button class="btn btn-brand btn-lg" type="submit"><i class="bi bi-send me-2"></i>Open in email app</button>
+              <span class="small text-body-secondary">The message opens in your email app — nothing is stored on this site.</span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-5">
+        <div class="contact-cards">
+          <a class="contact-card" href="mailto:{{ site.email }}">
+            <span class="feature__icon"><i class="bi bi-envelope"></i></span>
+            <span><small>Email</small><b class="notranslate" translate="no">{{ site.email }}</b></span>
+          </a>
+          <a class="contact-card" href="https://github.com/{{ site.github_username }}" rel="noopener">
+            <span class="feature__icon"><i class="bi bi-github"></i></span>
+            <span><small>GitHub</small><b class="notranslate" translate="no">github.com/{{ site.github_username }}</b></span>
+          </a>
+          <div class="contact-card contact-card--static">
+            <span class="feature__icon"><i class="bi bi-translate"></i></span>
+            <span><small>Languages</small><b>English, Русский</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

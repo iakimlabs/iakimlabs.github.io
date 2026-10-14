@@ -1,0 +1,61 @@
+---
+layout: default
+title: About
+description: About iakimlabs — an independent studio making Android games and apps.
+permalink: /about/
+---
+{% assign st = site.data.studio %}
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">About</p>
+    <h1 class="page-title">An independent studio for Android</h1>
+    <p class="lead page-lead">{{ st.about_short }}</p>
+  </div>
+</section>
+
+<section class="section pt-0">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-7">
+        <div class="prose">
+          {{ st.about_long | markdownify }}
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="person-card">
+          <div class="person-card__avatar notranslate" translate="no">{{ st.founder.name | slice: 0 }}{{ st.founder.name | split: ' ' | last | slice: 0 }}</div>
+          <div>
+            <h2 class="person-card__name notranslate" translate="no">{{ st.founder.name }}</h2>
+            <p class="person-card__role">{{ st.founder.role }}</p>
+          </div>
+          <div class="person-card__links">
+            <a class="btn btn-ghost btn-sm" href="mailto:{{ site.email }}"><i class="bi bi-envelope me-1"></i>Email</a>
+            <a class="btn btn-ghost btn-sm" href="https://github.com/{{ st.founder.github }}" rel="noopener"><i class="bi bi-github me-1"></i>GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head">
+      <div><p class="eyebrow">Principles</p><h2 class="section-title">How we work</h2></div>
+    </div>
+    <div class="row g-3">
+      {% for v in st.values %}
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature h-100">
+          <span class="feature__icon"><i class="bi {{ v.icon }}"></i></span>
+          <h3 class="feature__title">{{ v.title }}</h3>
+          <p class="feature__text">{{ v.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div class="pt-5"></div>
+{% include cta.html title="Have an idea or a question?" text="We're always happy to talk about games, apps and Android." %}

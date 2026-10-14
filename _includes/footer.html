@@ -1,0 +1,41 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <a class="brand notranslate mb-3" href="{{ '/' | relative_url }}" translate="no">
+          {% include logo.html %}<span>iakim<b>labs</b></span>
+        </a>
+        <p class="text-body-secondary mb-0 footer-about">{{ site.data.studio.about_short }}</p>
+      </div>
+      <div class="col-6 col-lg-2 offset-lg-1">
+        <h2 class="footer-title">Studio</h2>
+        <ul class="list-unstyled footer-links">
+          <li><a href="{{ '/apps/' | relative_url }}">Apps &amp; Games</a></li>
+          <li><a href="{{ '/testing/' | relative_url }}">Closed testing</a></li>
+          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h2 class="footer-title">Legal</h2>
+        <ul class="list-unstyled footer-links">
+          <li><a href="{{ '/privacy/' | relative_url }}">Website privacy</a></li>
+          {% assign apps_sorted = site.apps | sort: 'order' %}
+          {% for a in apps_sorted %}
+          <li><a href="{{ a.url | append: 'privacy/' | relative_url }}"><span class="notranslate" translate="no">{{ a.title }}</span> privacy</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h2 class="footer-title">Contact</h2>
+        <ul class="list-unstyled footer-links">
+          <li><a href="mailto:{{ site.email }}"><i class="bi bi-envelope me-1"></i><span class="notranslate" translate="no">{{ site.email }}</span></a></li>
+          <li><a href="https://github.com/{{ site.github_username }}" rel="noopener"><i class="bi bi-github me-1"></i>GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {{ site.time | date: '%Y' }} <span class="notranslate" translate="no">iakimlabs</span>. All rights reserved.</span>
+      <span class="text-body-secondary">Google Play and the Google Play logo are trademarks of Google LLC.</span>
+    </div>
+  </div>
+</footer>

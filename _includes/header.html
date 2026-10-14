@@ -1,0 +1,49 @@
+<header class="site-header">
+  <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand brand notranslate" href="{{ '/' | relative_url }}" translate="no">
+        {% include logo.html %}
+        <span>iakim<b>labs</b></span>
+      </a>
+
+      <div class="d-flex align-items-center gap-1 order-lg-last">
+        <!-- Language (Google Translate) -->
+        <div class="dropdown">
+          <button class="btn btn-icon" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Language">
+            <i class="bi bi-translate"></i><span class="lang-code notranslate" translate="no" data-lang-current>EN</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end lang-menu notranslate" translate="no">
+            <li><h6 class="dropdown-header">Language</h6></li>
+            {% for l in site.data.languages %}
+            <li><button class="dropdown-item" type="button" data-lang="{{ l.code }}">{{ l.label }}</button></li>
+            {% endfor %}
+            <li><hr class="dropdown-divider"></li>
+            <li><span class="dropdown-item-text small text-body-secondary">Translated by Google</span></li>
+          </ul>
+        </div>
+
+        <!-- Theme -->
+        <button class="btn btn-icon" type="button" data-theme-toggle aria-label="Toggle dark / light theme">
+          <i class="bi bi-moon-stars theme-icon-dark"></i><i class="bi bi-sun theme-icon-light"></i>
+        </button>
+
+        <button class="navbar-toggler btn-icon" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Menu">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-auto">
+          {% for item in site.data.navigation %}
+            {% assign active = false %}
+            {% if page.url == item.url %}{% assign active = true %}
+            {% elsif item.url != '/' and page.url contains item.url %}{% assign active = true %}{% endif %}
+            <li class="nav-item">
+              <a class="nav-link{% if active %} active{% endif %}" href="{{ item.url | relative_url }}"{% if active %} aria-current="page"{% endif %}>{{ item.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

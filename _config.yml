@@ -1,0 +1,51 @@
+# ───────────────────────────────────────────────
+#  iakimlabs.com — site settings
+# ───────────────────────────────────────────────
+title: iakimlabs
+tagline: Mobile games & apps for Android
+description: >-
+  iakimlabs is an independent studio crafting mobile games and apps for Android,
+  and helping developers pass Google Play closed testing before their first release.
+url: "https://iakimlabs.com"
+baseurl: ""
+lang: en
+locale: en_US
+
+email: iakimlabs@gmail.com
+github_username: iakimlabs
+
+# Shown in social previews (jekyll-seo-tag)
+logo: /assets/img/logo-512.png
+image: /assets/img/og.png
+social:
+  name: iakimlabs
+  links:
+    - https://github.com/iakimlabs
+
+# Every app is one Markdown file in _apps/
+collections:
+  apps:
+    output: true
+    permalink: /apps/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: apps
+    values:
+      layout: app
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - tools/

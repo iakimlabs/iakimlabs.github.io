@@ -1,0 +1,17 @@
+{% assign app = include.app %}
+<article class="app-card" style="--app-accent: {{ app.accent | default: '#3ddc84' }}"
+  data-app-card data-type="{{ app.type }}" data-status="{{ app.status }}"
+  data-search="{{ app.title | downcase }} {{ app.tagline | downcase }} {{ app.genre | downcase }} {{ app.type }}">
+  <div class="app-card__glow" aria-hidden="true"></div>
+  <div class="app-card__top">
+    <img class="app-icon" src="{{ app.icon | relative_url }}" alt="" width="72" height="72" loading="lazy">
+    {% include status-badge.html status=app.status %}
+  </div>
+  <h3 class="app-card__title"><a class="stretched-link notranslate" translate="no" href="{{ app.url | relative_url }}">{{ app.title }}</a></h3>
+  <p class="app-card__tagline">{{ app.tagline }}</p>
+  <div class="app-card__meta">
+    <span><i class="bi {% if app.type == 'game' %}bi-controller{% else %}bi-grid-1x2{% endif %}"></i>{% if app.type == 'game' %}Game{% else %}App{% endif %}</span>
+    {% if app.genre %}<span>{{ app.genre }}</span>{% endif %}
+    <span class="ms-auto app-card__arrow"><i class="bi bi-arrow-up-right"></i></span>
+  </div>
+</article>

@@ -1,0 +1,28 @@
+# Languages offered in the language menu (translated on the fly by Google Translate).
+# code = Google Translate language code; English is the original.
+- code: en
+  label: English
+- code: ru
+  label: Русский
+- code: es
+  label: Español
+- code: de
+  label: Deutsch
+- code: fr
+  label: Français
+- code: pt
+  label: Português
+- code: it
+  label: Italiano
+- code: tr
+  label: Türkçe
+- code: uk
+  label: Українська
+- code: hi
+  label: हिन्दी
+- code: zh-CN
+  label: 中文
+- code: ja
+  label: 日本語
+- code: ar
+  label: العربية
