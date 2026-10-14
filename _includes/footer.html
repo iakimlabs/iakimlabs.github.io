@@ -18,7 +18,7 @@
       <div class="col-6 col-lg-2">
         <h2 class="footer-title">Legal</h2>
         <ul class="list-unstyled footer-links">
-          <li><a href="{{ '/privacy/' | relative_url }}">Website privacy</a></li>
+          <li><a href="{{ '/privacy/' | relative_url }}">All privacy policies</a></li>
           {% assign apps_sorted = site.apps | sort: 'order' %}
           {% for a in apps_sorted %}
           <li><a href="{{ a.url | append: 'privacy/' | relative_url }}"><span class="notranslate" translate="no">{{ a.title }}</span> privacy</a></li>
