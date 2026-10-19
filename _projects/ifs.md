@@ -2,7 +2,7 @@
 title: IFS — Integration File Service
 short_title: IFS
 tagline: A corporate document repository on top of S3, with a web UI for employees and an HTTP API for 1C.
-summary: Role-based access over a folder tree, Active Directory sign-in, an audit log, custom document attributes, advanced search and ZIP / Excel export.
+summary: Role-based access over a folder tree, single sign-on, an audit log, custom document attributes, advanced search and ZIP / Excel export.
 order: 1
 featured: true
 accent: "#2f7bd9"
