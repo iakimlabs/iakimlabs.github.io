@@ -4,8 +4,8 @@
 title: iakimlabs
 tagline: Games & apps for mobile and PC
 description: >-
-  iakimlabs is an independent studio crafting games and apps for mobile, Windows and Steam —
-  starting on Android.
+  iakimlabs is an independent studio crafting games and apps for mobile, Windows and Steam,
+  plus custom web applications — starting on Android.
 url: "https://iakimlabs.com"
 baseurl: ""
 lang: en
@@ -34,6 +34,9 @@ collections:
   apps:
     output: true
     permalink: /apps/:name/
+  projects:                       # web projects / case studies, one Markdown file each in _projects/
+    output: true
+    permalink: /web/:name/
 
 defaults:
   - scope:
@@ -41,6 +44,11 @@ defaults:
       type: apps
     values:
       layout: app
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
 
 plugins:
   - jekyll-seo-tag

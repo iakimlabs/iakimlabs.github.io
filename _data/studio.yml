@@ -7,7 +7,7 @@ founder:
 
 about_short: >-
   We are a small independent studio that designs, builds and publishes
-  games and apps for mobile, Windows and Steam — from the first prototype to the store page. We start on Android, with iOS, Windows and Steam following.
+  games and apps for mobile, Windows and Steam — from the first prototype to the store page — plus custom web applications. We start on Android, with iOS, Windows and Steam following.
 
 about_long: |
   iakimlabs started as a side project of a web developer who wanted to ship
@@ -49,3 +49,7 @@ services:
   - icon: bi-steam
     title: Steam games
     text: Indie games for PC, from the first prototype to the Steam store page.
+  - icon: bi-window-stack
+    title: Web applications
+    text: Internal systems, integrations and document platforms built to last.
+    url: /web/

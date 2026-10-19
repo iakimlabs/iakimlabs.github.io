@@ -1,0 +1,10 @@
+{% assign p = include.project %}
+<article class="app-card project-card" style="--app-accent: {{ p.accent | default: '#2f7bd9' }}">
+  <div class="project-card__cover"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"></div>
+  <h3 class="app-card__title"><a class="stretched-link notranslate" translate="no" href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+  <p class="app-card__tagline">{{ p.summary | default: p.tagline }}</p>
+  <div class="app-card__meta">
+    <span><i class="bi bi-window-stack"></i>{{ p.type | default: 'Web application' }}</span>
+    <span class="ms-auto app-card__arrow"><i class="bi bi-arrow-up-right"></i></span>
+  </div>
+</article>

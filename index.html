@@ -88,11 +88,11 @@ body_class: home
     <div class="section-head section-head--center">
       <p class="eyebrow">What we do</p>
       <h2 class="section-title">From idea to release</h2>
-      <p class="section-lead">We build games and apps for phones, Windows PCs and Steam — from prototype to store page.</p>
+      <p class="section-lead">We build games and apps for phones, Windows PCs and Steam — and custom web applications for companies.</p>
     </div>
     <div class="row g-3">
       {% for s in site.data.studio.services %}
-      <div class="col-sm-6 col-lg-3">
+      <div class="col-sm-6 col-lg">
         <div class="feature feature--lg h-100{% if s.url %} feature--link{% endif %}">
           <span class="feature__icon"><i class="bi {{ s.icon }}"></i></span>
           <h3 class="feature__title">{% if s.url %}<a class="stretched-link" href="{{ s.url | relative_url }}">{{ s.title }}</a>{% else %}{{ s.title }}{% endif %}</h3>
@@ -103,6 +103,25 @@ body_class: home
     </div>
   </div>
 </section>
+
+<!-- ═══ Web projects ═══ -->
+{% assign web_projects = site.projects | sort: 'order' %}
+{% if web_projects.size > 0 %}
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Web</p>
+        <h2 class="section-title">Web applications</h2>
+      </div>
+      <a class="link-arrow" href="{{ '/web/' | relative_url }}">View all <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="app-grid">
+      {% for p in web_projects limit: 3 %}{% include project-card.html project=p %}{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
 
 <!-- ═══ About teaser ═══ -->
 <section class="section section--alt">

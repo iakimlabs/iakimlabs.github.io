@@ -1,0 +1,82 @@
+---
+layout: default
+---
+{% assign p = page %}
+<div class="app-page project-page" style="--app-accent: {{ p.accent | default: '#2f7bd9' }}">
+  <section class="app-hero">
+    <div class="app-hero__bg" aria-hidden="true"></div>
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ '/web/' | relative_url }}">Web</a></li>
+          <li class="breadcrumb-item active notranslate" translate="no" aria-current="page">{{ p.short_title | default: p.title }}</li>
+        </ol>
+      </nav>
+      <div class="d-flex flex-wrap gap-2 mb-2">
+        <span class="chip"><i class="bi bi-window-stack"></i>{{ p.type | default: 'Web application' }}</span>
+        {% if p.year %}<span class="chip"><i class="bi bi-calendar3"></i>{{ p.year }}</span>{% endif %}
+      </div>
+      <h1 class="app-title notranslate" translate="no">{{ p.title }}</h1>
+      <p class="app-tagline">{{ p.tagline }}</p>
+      {% if p.tags %}
+      <ul class="tag-list" aria-label="Technologies">
+        {% for t in p.tags %}<li class="notranslate" translate="no">{{ t }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="section pt-4">
+    <div class="container">
+      {% if p.stats %}
+      <div class="row g-3 mb-5">
+        {% for s in p.stats %}
+        <div class="col-6 col-lg-3">
+          <div class="stat h-100"><b class="stat__value">{{ s.value }}</b><span class="stat__label">{{ s.label }}</span></div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="prose project-prose">{{ content }}</div>
+
+      {% if p.features and p.features.size > 0 %}
+      <h2 class="section-title-sm mt-5">Key features</h2>
+      <div class="row g-3">
+        {% for f in p.features %}
+        <div class="col-md-6 col-xl-4">
+          <div class="feature h-100">
+            <span class="feature__icon"><i class="bi {{ f.icon | default: 'bi-stars' }}"></i></span>
+            <h3 class="feature__title">{{ f.title }}</h3>
+            <p class="feature__text">{{ f.text }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if p.decisions and p.decisions.size > 0 %}
+      <h2 class="section-title-sm mt-5">Engineering decisions</h2>
+      <ol class="decisions">
+        {% for d in p.decisions %}
+        <li><b>{{ d.title }}</b> {{ d.text }}</li>
+        {% endfor %}
+      </ol>
+      {% endif %}
+
+      {% if p.screens and p.screens.size > 0 %}
+      <h2 class="section-title-sm mt-5">Screens</h2>
+      <div class="project-shots">
+        {% for s in p.screens %}
+        <figure class="project-shot">
+          <a href="{{ s.src | relative_url }}" target="_blank" rel="noopener"><img src="{{ s.src | relative_url }}" alt="{{ s.caption }}" loading="lazy"></a>
+          <figcaption>{{ s.caption }}</figcaption>
+        </figure>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </section>
+</div>
+
+{% include cta.html title="Need a web application?" text="Internal tools, integrations, document and data systems — tell us what you need." %}

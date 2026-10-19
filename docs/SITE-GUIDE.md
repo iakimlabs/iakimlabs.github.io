@@ -15,11 +15,15 @@ _data/
   statuses.yml         статусы приложений (On Google Play, Closed testing…)
 _apps/                 ← одно приложение = один .md файл
   mousecrumbs.md
+_projects/             ← один веб-проект (кейс) = один .md файл
+  ifs.md
+web/index.html         список веб-проектов
 apps/
   index.html           каталог (фильтры + поиск)
   mousecrumbs/privacy.md   страница политики конфиденциальности
 assets/
   apps/<slug>/         иконка и скриншоты приложения
+  projects/<slug>/     обложка и скриншоты веб-проекта
   css/main.css         стили (цвета — переменные в начале файла)
   js/main.js           тема, перевод, фильтры, форма
 index.html, about.html, contact.html, privacy.md, 404.html
@@ -74,6 +78,18 @@ steam_url: https://store.steampowered.com/app/0000000/
 - Статус `testflight` = «TestFlight beta». Подпись «live» зависит от платформы (On Google Play / On the App Store / Available / On Steam).
 - **Официальные бейджи магазинов:** сейчас кнопки — простые текстовые заглушки. Скачайте фирменные бейджи Google и Apple, положите в `assets/img/badges/` и укажите пути в `badges.google_play` / `badges.app_store` в `_config.yml`. Соблюдайте правила использования бейджей.
 - Когда iOS-приложение выйдет, добавьте в футер строку о товарном знаке Apple («App Store is a service mark of Apple Inc.»).
+
+## Веб-проекты
+
+Веб-приложения и кейсы лежат в разделе **Web** (`/web/`). Каждый проект — один Markdown-файл в `_projects/`; скопируйте `_projects/ifs.md` и поправьте front matter:
+
+- `title`, `short_title`, `tagline`, `summary` (текст карточки), `order`, `featured`, `accent`, `type`, `year`, `tags`;
+- `cover` — картинка карточки (16:9, кладите в `assets/projects/<slug>/`);
+- `stats` (плитки «значение + подпись»), `features` (иконка, заголовок, текст), `decisions` (заголовок, текст);
+- `screens` — список `src` и `caption`; оставляйте несколько лучших скриншотов, WebP шириной до 1600 px;
+- текст под front matter (Markdown) — вводная часть: задача и решение.
+
+Проект сам появляется на `/web/`, на главной и в sitemap. На скриншотах — только демонстрационные данные: без названий заказчиков и реальных документов.
 
 ## Публикация на GitHub Pages
 

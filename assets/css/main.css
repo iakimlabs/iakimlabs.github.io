@@ -569,3 +569,24 @@ font[style] { background: none !important; box-shadow: none !important; }
 .app-card__platforms { display: inline-flex; gap: .4rem; font-size: .95rem; }
 .store-badge { display: inline-flex; align-items: center; }
 .store-badge img { height: 52px; width: auto; }
+
+/* ── Web projects (case studies) ───────────────────────── */
+.project-card { padding-top: 0; overflow: hidden; }
+.project-card__cover { margin: 0 -1.5rem 1.1rem; aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface-2); border-bottom: 1px solid var(--bs-border-color); }
+.project-card__cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tag-list { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 1rem 0 0; }
+.tag-list li { font-family: var(--font-mono); font-size: .78rem; padding: .3rem .65rem; border-radius: 999px; border: 1px solid var(--bs-border-color); background: var(--surface-2); color: var(--bs-secondary-color); }
+.stat { padding: 1.1rem 1.25rem; border: 1px solid var(--bs-border-color); border-radius: var(--radius, 1rem); background: var(--surface); display: flex; flex-direction: column; gap: .35rem; }
+.stat__value { font-family: var(--font-display, inherit); font-size: 1.7rem; font-weight: 700; line-height: 1.1; color: var(--app-accent, var(--brand)); }
+.stat__label { font-size: .88rem; color: var(--bs-secondary-color); }
+.project-prose { max-width: 52rem; }
+.project-prose h2 { margin-top: 1.6rem; }
+.decisions { padding-left: 1.4rem; max-width: 52rem; }
+.decisions li { margin-bottom: .9rem; line-height: 1.65; }
+.decisions li b { color: var(--bs-emphasis-color); }
+.project-shots { display: grid; gap: 2rem; }
+.project-shot { margin: 0; }
+.project-shot a { display: block; border: 1px solid var(--bs-border-color); border-radius: .9rem; overflow: hidden; box-shadow: 0 10px 30px -18px rgba(0,0,0,.45); background: #fff; }
+.project-shot img { width: 100%; height: auto; display: block; }
+.project-shot figcaption { margin-top: .6rem; font-size: .92rem; color: var(--bs-secondary-color); }
+@media (min-width: 992px) { .project-shot:nth-child(n+3) { max-width: 100%; } }

@@ -1,0 +1,24 @@
+---
+layout: default
+title: Web
+description: Web applications by iakimlabs — internal systems, integrations and document platforms.
+permalink: /web/
+---
+{% assign projects_sorted = site.projects | sort: 'order' %}
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Web</p>
+    <h1 class="page-title">Web applications</h1>
+    <p class="lead page-lead">Beyond games and apps, we build custom web systems — internal tools, integrations and document platforms for companies.</p>
+  </div>
+</section>
+
+<section class="section pt-0">
+  <div class="container">
+    <div class="app-grid">
+      {% for p in projects_sorted %}{% include project-card.html project=p %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include cta.html title="Need a web application?" text="Tell us what you need — we'll reply within a day with the next steps." %}

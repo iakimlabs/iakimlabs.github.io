@@ -15,11 +15,15 @@ _data/
   statuses.yml         app statuses (On Google Play, Closed testing…)
 _apps/                 ← one app = one .md file
   mousecrumbs.md
+_projects/             ← one web project (case study) = one .md file
+  ifs.md
+web/index.html         list of web projects
 apps/
   index.html           catalog (filters + search)
   mousecrumbs/privacy.md   privacy policy page of the app
 assets/
   apps/<slug>/         app icon and screenshots
+  projects/<slug>/     web project cover and screenshots
   css/main.css         styles (colors are variables at the top of the file)
   js/main.js           theme, translation, filters, contact form
 docs/                  technical documentation (not published on the site)
@@ -75,6 +79,18 @@ For a Windows- or Steam-only game, use e.g. `platforms: [Windows, Steam]` — no
 - Status `testflight` = "TestFlight beta". The "live" label adapts to the platform (On Google Play / On the App Store / Available / On Steam).
 - **Store badges:** the buttons are simple text placeholders. For the official look, download Google's and Apple's badge artwork, put it into `assets/img/badges/` and set `badges.google_play` / `badges.app_store` in `_config.yml`. Follow each store's badge guidelines.
 - When an iOS app goes live, add Apple's trademark line to the footer ("App Store is a service mark of Apple Inc.").
+
+## Web projects
+
+Web applications and case studies live in the **Web** section (`/web/`). Each project is one Markdown file in `_projects/`; copy `_projects/ifs.md` and edit the front matter:
+
+- `title`, `short_title`, `tagline`, `summary` (card text), `order`, `featured`, `accent`, `type`, `year`, `tags`;
+- `cover` — card image (16:9, put it in `assets/projects/<slug>/`);
+- `stats` (value + label tiles), `features` (icon, title, text), `decisions` (title, text);
+- `screens` — a list of `src` and `caption`; keep it to a handful of the best screenshots, WebP up to 1600 px wide;
+- the text below the front matter (Markdown) is the introduction: the task and the solution.
+
+The project appears on `/web/`, on the home page and in the sitemap automatically. Screenshots must show demo data only — no customer names or real documents.
 
 ## Privacy policies
 
