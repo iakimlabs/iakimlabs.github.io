@@ -1,7 +1,7 @@
 ---
 title: IFS — Integration File Service
 short_title: IFS
-tagline: A corporate document repository on top of S3, with a web UI for employees and an HTTP API for 1C.
+tagline: A corporate document repository on top of S3, with a web UI for employees and an HTTP API for ERP systems.
 summary: Role-based access over a folder tree, single sign-on, an audit log, custom document attributes, advanced search and ZIP / Excel export.
 order: 1
 featured: true
@@ -9,7 +9,7 @@ accent: "#2f7bd9"
 cover: /assets/projects/ifs/cover.webp
 type: Web application
 year: 2026
-tags: [Django, PostgreSQL, S3, nginx · Kerberos, 1C, Delphi]
+tags: [Django, PostgreSQL, S3, nginx · Kerberos, REST API, ERP integration]
 stats:
   - value: "60–130 ms"
     label: advanced search over 3,000 folders and 60,000 files
@@ -24,8 +24,8 @@ features:
     title: Folder tree and roles
     text: Eight actions on folders and files. Roles are assigned to a branch, inherited downward and added together. Search and export respect rights, so closed documents never show up in results.
   - icon: bi-plug
-    title: API for 1C and other systems
-    text: Documents arrive by a readable path, Organization/Section/Year/Month/file. Missing folders are created on the fly with the parent's rights. 1C and Delphi modules included.
+    title: API for ERP and other systems
+    text: Documents arrive by a readable path, Organization/Section/Year/Month/file. Missing folders are created on the fly with the parent's rights. Any ERP (SAP, Microsoft Dynamics, Oracle) or script can call it, and sample clients are included.
   - icon: bi-tags
     title: Custom document attributes
     text: Document type, signatory, contract date, amount. Admin-managed dictionary; values can be set in the file card, on upload, in bulk from search results and via the API.
@@ -69,7 +69,7 @@ IFS is a single place for primary documents — contracts, acts, invoices — of
 
 ## The challenge
 
-- Documents have to arrive automatically from 1C.
+- Documents have to arrive automatically from the ERP system.
 - Employees work with them in the browser, and everyone sees only their own.
 - Security needs to see who did what and when.
 - Everything runs inside the corporate network.

@@ -19,7 +19,7 @@ An independent studio that designs, builds and publishes small, polished games a
 | | |
 |---|---|
 | <img src="assets/apps/mousecrumbs/icon.png" width="64" alt="Mouse Crumbs icon"> | **[Mouse Crumbs](https://iakimlabs.com/apps/mousecrumbs/)** — a gentle offline game where you feed a little mouse, ring a bell and watch it explore. No ads, no accounts, no purchases. 21 languages. *Now in closed testing on Google Play.* |
-| <img src="assets/projects/ifs/cover.webp" width="64" alt="IFS cover"> | **[IFS — Integration File Service](https://iakimlabs.com/web/ifs/)** — a corporate document repository on top of S3, with a web UI, an HTTP API for 1C, role-based access, an audit log, advanced search and ZIP / Excel export. *Web application.* |
+| <img src="assets/projects/ifs/cover.webp" width="64" alt="IFS cover"> | **[IFS — Integration File Service](https://iakimlabs.com/web/ifs/)** — a corporate document repository on top of S3, with a web UI, an HTTP API for ERP systems, role-based access, an audit log, advanced search and ZIP / Excel export. *Web application.* |
 
 More games and apps are on the way.
 
