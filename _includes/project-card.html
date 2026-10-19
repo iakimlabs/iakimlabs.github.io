@@ -1,6 +1,6 @@
 {% assign p = include.project %}
 <article class="app-card project-card" style="--app-accent: {{ p.accent | default: '#2f7bd9' }}">
-  <div class="project-card__cover"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"></div>
+  <div class="project-card__cover"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"><span class="status status--web project-card__badge"><i class="bi bi-globe2"></i>Web</span></div>
   <h3 class="app-card__title"><a class="stretched-link notranslate" translate="no" href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
   <p class="app-card__tagline">{{ p.summary | default: p.tagline }}</p>
   <div class="app-card__meta">
