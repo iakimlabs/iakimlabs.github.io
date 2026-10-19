@@ -23,7 +23,7 @@ assets/
   css/main.css         styles (colors are variables at the top of the file)
   js/main.js           theme, translation, filters, contact form
 docs/                  technical documentation (not published on the site)
-index.html, testing.html, about.html, contact.html, privacy.md, 404.html
+index.html, about.html, contact.html, privacy.md, 404.html
 CNAME                  iakimlabs.com
 ```
 
@@ -51,9 +51,9 @@ Its page is `https://iakimlabs.com/apps/<slug>/`, its policy is `https://iakimla
 **Statuses:** `live` ("Get it on Google Play" button), `closed-testing` ("Become a tester" / "Tester link" buttons), `in-development`, `coming-soon`.
 Google Play links are built from `package` automatically. When the app is released, just change `status` to `live`.
 
-### Adding iOS (or another platform)
+### Adding iOS, Windows or Steam
 
-Apps without a `platforms` field are treated as Android-only. To add iOS, edit the app file only:
+Apps without a `platforms` field are treated as Android-only. Supported platforms: `Android`, `iOS`, `Windows`, `Steam`. To add one, edit the app file only:
 
 ```yaml
 platforms: [Android, iOS]
@@ -62,10 +62,17 @@ ios_status: testflight          # live | testflight | in-development | coming-so
 ios_url: https://apps.apple.com/app/id0000000000        # when ios_status is live
 ios_testflight_url: https://testflight.apple.com/join/XXXX   # when ios_status is testflight
 min_ios: "16.0"
+windows_status: live            # Windows: live | in-development | coming-soon
+windows_url: https://example.com/download/app-setup.exe
+min_windows: "Windows 10+"
+steam_status: coming-soon       # Steam: live → "Get it on Steam", otherwise "Wishlist on Steam" if steam_url is set
+steam_url: https://store.steampowered.com/app/0000000/
 ```
 
-- Buttons, status badges, platform icons on cards and the **Android / iOS / In testing** catalog filters appear automatically (the platform filters show up only once an iOS app exists).
-- Status `testflight` = "TestFlight beta".
+For a Windows- or Steam-only game, use e.g. `platforms: [Windows, Steam]` — no `package` is needed.
+
+- Buttons, status badges, platform icons on cards and the **In testing** and per-platform catalog filters appear automatically (platform filters show up once the catalog has more than Android apps).
+- Status `testflight` = "TestFlight beta". The "live" label adapts to the platform (On Google Play / On the App Store / Available / On Steam).
 - **Store badges:** the buttons are simple text placeholders. For the official look, download Google's and Apple's badge artwork, put it into `assets/img/badges/` and set `badges.google_play` / `badges.app_store` in `_config.yml`. Follow each store's badge guidelines.
 - When an iOS app goes live, add Apple's trademark line to the footer ("App Store is a service mark of Apple Inc.").
 

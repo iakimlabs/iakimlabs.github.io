@@ -22,7 +22,7 @@ assets/
   apps/<slug>/         иконка и скриншоты приложения
   css/main.css         стили (цвета — переменные в начале файла)
   js/main.js           тема, перевод, фильтры, форма
-index.html, testing.html, about.html, contact.html, privacy.md, 404.html
+index.html, about.html, contact.html, privacy.md, 404.html
 CNAME                  iakimlabs.com
 ```
 
@@ -50,9 +50,9 @@ CNAME                  iakimlabs.com
 **Статусы:** `live` (кнопка «Get it on Google Play»), `closed-testing` (кнопки «Become a tester» / «Tester link»), `in-development`, `coming-soon`.
 Ссылки на Google Play строятся из `package` автоматически.
 
-### Добавление iOS (или другой платформы)
+### Добавление iOS, Windows или Steam
 
-Приложение без поля `platforms` считается только для Android. Чтобы добавить iOS, правьте только файл приложения:
+Приложение без поля `platforms` считается только для Android. Поддерживаются платформы `Android`, `iOS`, `Windows`, `Steam`. Чтобы добавить, правьте только файл приложения:
 
 ```yaml
 platforms: [Android, iOS]
@@ -61,10 +61,17 @@ ios_status: testflight          # live | testflight | in-development | coming-so
 ios_url: https://apps.apple.com/app/id0000000000        # когда ios_status: live
 ios_testflight_url: https://testflight.apple.com/join/XXXX   # когда ios_status: testflight
 min_ios: "16.0"
+windows_status: live            # Windows: live | in-development | coming-soon
+windows_url: https://example.com/download/app-setup.exe
+min_windows: "Windows 10+"
+steam_status: coming-soon       # Steam: live → «Get it on Steam», иначе «Wishlist on Steam», если задан steam_url
+steam_url: https://store.steampowered.com/app/0000000/
 ```
 
-- Кнопки, бейджи статусов, значки платформ на карточке и фильтры **Android / iOS / In testing** в каталоге появляются сами (фильтры платформ видны, только когда есть iOS-приложение).
-- Статус `testflight` = «TestFlight beta».
+Для игры только под Windows или Steam укажите, например, `platforms: [Windows, Steam]` — `package` не нужен.
+
+- Кнопки, бейджи статусов, значки платформ на карточке и фильтры **In testing** и по платформам в каталоге появляются сами (фильтры платформ видны, когда в каталоге есть не только Android-приложения).
+- Статус `testflight` = «TestFlight beta». Подпись «live» зависит от платформы (On Google Play / On the App Store / Available / On Steam).
 - **Официальные бейджи магазинов:** сейчас кнопки — простые текстовые заглушки. Скачайте фирменные бейджи Google и Apple, положите в `assets/img/badges/` и укажите пути в `badges.google_play` / `badges.app_store` в `_config.yml`. Соблюдайте правила использования бейджей.
 - Когда iOS-приложение выйдет, добавьте в футер строку о товарном знаке Apple («App Store is a service mark of Apple Inc.»).
 

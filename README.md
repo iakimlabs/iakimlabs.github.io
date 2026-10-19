@@ -4,11 +4,11 @@
 
 # iakimlabs
 
-**Mobile games & apps**
+**Games & apps for mobile and PC**
 
-An independent studio that designs, builds and publishes small, polished mobile games and apps — starting on Android, with iOS next — and helps other developers get through Google Play closed testing.
+An independent studio that designs, builds and publishes small, polished games and apps for mobile, Windows and Steam — starting on Android, with iOS, Windows and Steam following.
 
-[**iakimlabs.com**](https://iakimlabs.com) · [Apps & Games](https://iakimlabs.com/apps/) · [Closed testing](https://iakimlabs.com/testing/) · [Contact](https://iakimlabs.com/contact/)
+[**iakimlabs.com**](https://iakimlabs.com) · [Apps & Games](https://iakimlabs.com/apps/) · [Contact](https://iakimlabs.com/contact/)
 
 </div>
 
@@ -26,19 +26,19 @@ More games and apps are on the way.
 
 - 🎮 **Mobile games** — casual and arcade games for phones and tablets that are easy to pick up and hard to put down.
 - 📱 **Mobile apps** — useful tools with clean interfaces and careful attention to detail.
-- 👥 **Closed testing for Google Play** — engaged testers for the 12-testers / 14-days requirement for new personal developer accounts, with daily usage and honest feedback. [How it works →](https://iakimlabs.com/testing/)
-- 🚀 **Publishing support** — store listing, privacy policy page and a release checklist for your first Google Play launch.
+- 🪟 **Windows software** — desktop apps and utilities for Windows.
+- 🕹️ **Steam games** — indie games for PC, from the first prototype to the Steam store page.
 
 ## Principles
 
-- **Built for real phones** — designed for different screens, devices and OS versions. Android now, iOS next.
+- **Built for real phones** — designed for different screens, devices and OS versions. Mobile first, with Windows and Steam alongside.
 - **Small and polished** — fewer features, done properly.
 - **Respect for players** — clear privacy policies and only the data an app really needs.
 - **Listening to feedback** — testers and players shape every update.
 
 ## Get in touch
 
-Need testers for your first release, or just want to say hello?
+Have an idea or a question?
 Write to **[iakimlabs@gmail.com](mailto:iakimlabs@gmail.com)** or use the [contact form](https://iakimlabs.com/contact/).
 
 ---

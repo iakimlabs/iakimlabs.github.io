@@ -7,26 +7,25 @@ founder:
 
 about_short: >-
   We are a small independent studio that designs, builds and publishes
-  games and apps for mobile — from the first prototype to the store listing. We start on Android, with iOS next.
+  games and apps for mobile, Windows and Steam — from the first prototype to the store page. We start on Android, with iOS, Windows and Steam following.
 
 about_long: |
   iakimlabs started as a side project of a web developer who wanted to ship
   things people carry in their pocket. Years of building business web
   applications taught us to care about reliability, clean architecture and
-  details nobody notices until they are missing — now we bring that to mobile.
+  details nobody notices until they are missing — now we bring that to mobile and desktop.
 
   We keep projects small and focused: casual games you can enjoy in a few
   minutes and practical apps that do one job well. Every release goes through
   real-device testing before it reaches the store.
 
-  Because we went through Google Play's closed-testing requirement ourselves,
-  we also help other independent developers get through it — with engaged
-  testers and honest feedback.
+  We build for phones and tablets, Windows desktops and Steam — and we like
+  products that feel at home on each platform.
 
 values:
   - icon: bi-phone
-    title: Built for real phones
-    text: We design for different screens, devices and OS versions from day one — Android now, iOS next.
+    title: Built for real devices
+    text: We design for different screens, devices and OS versions from day one — Mobile first, with Windows and Steam alongside.
   - icon: bi-feather
     title: Small and polished
     text: Fewer features, done properly. Fast to load, easy to understand, pleasant to use.
@@ -44,11 +43,9 @@ services:
   - icon: bi-grid-1x2
     title: Mobile apps
     text: Useful tools and utilities with clean interfaces and careful attention to detail.
-  - icon: bi-people
-    title: Closed testing
-    text: Engaged testers for Google Play's 12-testers / 14-days requirement, with daily usage and feedback.
-    url: /testing/
-  - icon: bi-rocket-takeoff
-    title: Publishing support
-    text: Store listing, privacy policy page and release checklist for your first Google Play launch.
-    url: /testing/
+  - icon: bi-windows
+    title: Windows software
+    text: Desktop apps and utilities for Windows — practical, fast and tidy.
+  - icon: bi-steam
+    title: Steam games
+    text: Indie games for PC, from the first prototype to the Steam store page.

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Mobile games & apps
+title: Games & apps for mobile and PC
 body_class: home
 ---
 {% assign apps_sorted = site.apps | sort: 'order' %}
@@ -12,16 +12,16 @@ body_class: home
   <div class="container">
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
-        <p class="eyebrow"><span class="dot"></span>Independent mobile studio</p>
-        <h1 class="hero__title">We craft <span class="text-gradient">games &amp; apps</span> for the phone in your pocket.</h1>
-        <p class="hero__lead">{{ site.data.studio.about_short }} We also run closed testing for developers preparing their first Google Play release.</p>
+        <p class="eyebrow"><span class="dot"></span>Independent game &amp; app studio</p>
+        <h1 class="hero__title">We craft <span class="text-gradient">games &amp; apps</span> for phones, PCs and Steam.</h1>
+        <p class="hero__lead">{{ site.data.studio.about_short }}</p>
         <div class="d-flex flex-wrap gap-2 mt-4">
           <a class="btn btn-brand btn-lg" href="{{ '/apps/' | relative_url }}">Explore our apps <i class="bi bi-arrow-right ms-1"></i></a>
-          <a class="btn btn-ghost btn-lg" href="{{ '/testing/' | relative_url }}">Closed testing service</a>
+          <a class="btn btn-ghost btn-lg" href="{{ '/contact/' | relative_url }}">Work with us</a>
         </div>
         <ul class="hero__facts">
-          <li><i class="bi bi-android2"></i>Android now, iOS next</li>
-          <li><i class="bi bi-phone-vibrate"></i>Tested on real devices</li>
+          <li><i class="bi bi-windows"></i>Mobile, Windows &amp; Steam</li>
+          <li><i class="bi bi-phone-vibrate"></i>Tested on real hardware</li>
           <li><i class="bi bi-shield-check"></i>Privacy-friendly</li>
         </ul>
       </div>
@@ -47,17 +47,14 @@ body_class: home
               {% endif %}
               <div class="phone__lines"><span></span><span></span><span></span></div>
               <div class="phone__card">
-                <span class="phone__card-label">Closed test</span>
-                <div class="progress-days">
-                  {% for i in (1..14) %}<span{% if i <= 9 %} class="on"{% endif %}></span>{% endfor %}
-                </div>
-                <span class="phone__card-meta">Day 9 of 14 · testers active</span>
+                <span class="phone__card-label">Platforms</span>
+                <span class="phone__card-meta">Android &middot; iOS &middot; Windows &middot; Steam</span>
               </div>
             </div>
           </div>
-          <div class="float-chip float-chip--a"><i class="bi bi-people-fill"></i>12+ testers</div>
-          <div class="float-chip float-chip--b"><i class="bi bi-calendar-check"></i>14 days</div>
-          <div class="float-chip float-chip--c"><i class="bi bi-check2-circle"></i>Ready for production</div>
+          <div class="float-chip float-chip--a"><i class="bi bi-android2"></i>Android</div>
+          <div class="float-chip float-chip--b"><i class="bi bi-windows"></i>Windows</div>
+          <div class="float-chip float-chip--c"><i class="bi bi-steam"></i>Steam</div>
         </div>
       </div>
     </div>
@@ -90,8 +87,8 @@ body_class: home
   <div class="container">
     <div class="section-head section-head--center">
       <p class="eyebrow">What we do</p>
-      <h2 class="section-title">From idea to Google Play</h2>
-      <p class="section-lead">We build our own products and help other independent developers launch theirs.</p>
+      <h2 class="section-title">From idea to release</h2>
+      <p class="section-lead">We build games and apps for phones, Windows PCs and Steam — from prototype to store page.</p>
     </div>
     <div class="row g-3">
       {% for s in site.data.studio.services %}
@@ -103,30 +100,6 @@ body_class: home
         </div>
       </div>
       {% endfor %}
-    </div>
-  </div>
-</section>
-
-<!-- ═══ Closed testing teaser ═══ -->
-<section class="section">
-  <div class="container">
-    <div class="testing-teaser">
-      <div class="row g-5 align-items-center">
-        <div class="col-lg-5">
-          <p class="eyebrow">Closed testing</p>
-          <h2 class="section-title">Your first release, without the 12-tester headache</h2>
-          <p class="text-body-secondary">New personal Google Play accounts must run a closed test with at least 12 testers for 14 days in a row before they can publish. We provide engaged testers who actually open your app every day and tell you what they think.</p>
-          <a class="btn btn-brand mt-2" href="{{ '/testing/' | relative_url }}">See how it works</a>
-        </div>
-        <div class="col-lg-7">
-          <ol class="steps">
-            <li class="step"><span class="step__num">01</span><div><h3>Share your test link</h3><p>Set up a closed testing track and send us the opt-in link.</p></div></li>
-            <li class="step"><span class="step__num">02</span><div><h3>Testers join</h3><p>We opt in more than 12 testers, so one drop-out won't reset your clock.</p></div></li>
-            <li class="step"><span class="step__num">03</span><div><h3>14 days of real use</h3><p>Daily sessions on different devices, plus written feedback.</p></div></li>
-            <li class="step"><span class="step__num">04</span><div><h3>Apply for production</h3><p>We help you answer Google's production access questions.</p></div></li>
-          </ol>
-        </div>
-      </div>
     </div>
   </div>
 </section>

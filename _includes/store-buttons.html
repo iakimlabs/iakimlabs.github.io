@@ -1,19 +1,28 @@
 {% comment %}
-  Store / tester buttons for an app page. Usage: {% include store-buttons.html app=page %}
-  Per-platform status: android_status / ios_status (Android falls back to `status`, iOS to `coming-soon`).
+  Store / download buttons for an app page. Usage: {% include store-buttons.html app=page %}
+  Platforms: Android (default), iOS, Windows, Steam — listed in `platforms`.
+  Per-platform status: android_status / ios_status / windows_status / steam_status
+  (Android falls back to `status`, the others to `coming-soon`).
+  Links: play_url (or built from `package`), ios_url, ios_testflight_url, windows_url, steam_url.
   Official store badge images can be set in _config.yml (badges.google_play / badges.app_store).
 {% endcomment %}
 {% assign app = include.app %}
 {% assign has_android = true %}
-{% assign has_ios = false %}
+{% assign has_ios = false %}{% assign has_windows = false %}{% assign has_steam = false %}
+{% assign plat_count = 1 %}
 {% if app.platforms %}
-  {% unless app.platforms contains 'Android' %}{% assign has_android = false %}{% endunless %}
+  {% assign has_android = false %}{% assign plat_count = app.platforms.size %}
+  {% if app.platforms contains 'Android' %}{% assign has_android = true %}{% endif %}
   {% if app.platforms contains 'iOS' %}{% assign has_ios = true %}{% endif %}
+  {% if app.platforms contains 'Windows' %}{% assign has_windows = true %}{% endif %}
+  {% if app.platforms contains 'Steam' %}{% assign has_steam = true %}{% endif %}
 {% endif %}
 {% assign a_status = app.android_status | default: app.status %}
 {% assign i_status = app.ios_status | default: 'coming-soon' %}
+{% assign w_status = app.windows_status | default: app.status | default: 'coming-soon' %}
+{% assign s_status = app.steam_status | default: app.status | default: 'coming-soon' %}
 {% assign multi = false %}
-{% if has_android and has_ios %}{% assign multi = true %}{% endif %}
+{% if plat_count > 1 %}{% assign multi = true %}{% endif %}
 {% assign tester_cta = false %}
 
 {% if has_android %}
@@ -29,6 +38,8 @@
     <a class="btn btn-ghost btn-lg" href="{{ testing_url }}" rel="noopener" title="Works only for Google accounts already added to the test"><i class="bi bi-box-arrow-up-right me-2"></i>{% if multi %}Android tester link{% else %}Tester link{% endif %}</a>
   {% elsif multi %}
     <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-android2 me-2"></i>Android · soon</span>
+  {% else %}
+    <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-2"></i>Coming soon</span>
   {% endif %}
 {% endif %}
 
@@ -45,11 +56,31 @@
     {% elsif tester_cta == false %}
       <a class="btn btn-brand btn-lg" href="{{ '/contact/' | relative_url }}?subject=iOS%20tester%20for%20{{ app.title | uri_escape }}"><i class="bi bi-person-plus me-2"></i>Become a tester</a>
     {% endif %}
-  {% else %}
+  {% elsif multi %}
     <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-apple me-2"></i>iOS · soon</span>
+  {% else %}
+    <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-2"></i>Coming soon</span>
   {% endif %}
 {% endif %}
 
-{% if multi == false and has_android and a_status != 'live' and a_status != 'closed-testing' %}
-  <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-2"></i>Coming soon</span>
+{% if has_windows %}
+  {% if w_status == 'live' and app.windows_url %}
+    <a class="btn btn-play" href="{{ app.windows_url }}" rel="noopener"><i class="bi bi-windows"></i><span><small>Download for</small>Windows</span></a>
+  {% elsif multi %}
+    <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-windows me-2"></i>Windows · soon</span>
+  {% else %}
+    <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-2"></i>Coming soon</span>
+  {% endif %}
+{% endif %}
+
+{% if has_steam %}
+  {% if s_status == 'live' and app.steam_url %}
+    <a class="btn btn-play" href="{{ app.steam_url }}" rel="noopener"><i class="bi bi-steam"></i><span><small>Get it on</small>Steam</span></a>
+  {% elsif app.steam_url %}
+    <a class="btn btn-brand btn-lg" href="{{ app.steam_url }}" rel="noopener"><i class="bi bi-steam me-2"></i>Wishlist on Steam</a>
+  {% elsif multi %}
+    <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-steam me-2"></i>Steam · soon</span>
+  {% else %}
+    <span class="btn btn-ghost btn-lg disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-2"></i>Coming soon</span>
+  {% endif %}
 {% endif %}

@@ -2,10 +2,10 @@
 #  iakimlabs.com — site settings
 # ───────────────────────────────────────────────
 title: iakimlabs
-tagline: Mobile games & apps
+tagline: Games & apps for mobile and PC
 description: >-
-  iakimlabs is an independent studio crafting mobile games and apps — starting on Android —
-  and helping developers pass Google Play closed testing before their first release.
+  iakimlabs is an independent studio crafting games and apps for mobile, Windows and Steam —
+  starting on Android.
 url: "https://iakimlabs.com"
 baseurl: ""
 lang: en

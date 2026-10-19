@@ -1,20 +1,24 @@
 ---
 layout: default
 title: Apps & Games
-description: All mobile games and apps by iakimlabs — released, in testing and in development.
+description: All games and apps by iakimlabs for mobile, Windows and Steam — released, in testing and in development.
 permalink: /apps/
 ---
 {% assign apps_sorted = site.apps | sort: 'order' %}
 {% assign games = apps_sorted | where: 'type', 'game' %}
 {% assign tools = apps_sorted | where: 'type', 'app' %}
-{% assign testing_count = 0 %}{% assign android_count = 0 %}{% assign ios_count = 0 %}
+{% assign testing_count = 0 %}{% assign android_count = 0 %}{% assign ios_count = 0 %}{% assign windows_count = 0 %}{% assign steam_count = 0 %}
 {% for a in apps_sorted %}
   {% if a.status == 'closed-testing' or a.android_status == 'closed-testing' or a.ios_status == 'testflight' %}{% assign testing_count = testing_count | plus: 1 %}{% endif %}
   {% if a.platforms %}
     {% if a.platforms contains 'Android' %}{% assign android_count = android_count | plus: 1 %}{% endif %}
     {% if a.platforms contains 'iOS' %}{% assign ios_count = ios_count | plus: 1 %}{% endif %}
+    {% if a.platforms contains 'Windows' %}{% assign windows_count = windows_count | plus: 1 %}{% endif %}
+    {% if a.platforms contains 'Steam' %}{% assign steam_count = steam_count | plus: 1 %}{% endif %}
   {% else %}{% assign android_count = android_count | plus: 1 %}{% endif %}
 {% endfor %}
+{% assign multi_platform = false %}
+{% if ios_count > 0 or windows_count > 0 or steam_count > 0 %}{% assign multi_platform = true %}{% endif %}
 
 <section class="page-hero">
   <div class="container">
@@ -32,9 +36,11 @@ permalink: /apps/
         <button class="filter" type="button" data-filter="game"><i class="bi bi-controller"></i>Games <span>{{ games.size }}</span></button>
         <button class="filter" type="button" data-filter="app"><i class="bi bi-grid-1x2"></i>Apps <span>{{ tools.size }}</span></button>
         <button class="filter" type="button" data-filter="testing"><i class="bi bi-bug"></i>In testing <span>{{ testing_count }}</span></button>
-        {% if ios_count > 0 %}
-        <button class="filter" type="button" data-filter="android"><i class="bi bi-android2"></i>Android <span>{{ android_count }}</span></button>
-        <button class="filter" type="button" data-filter="ios"><i class="bi bi-apple"></i>iOS <span>{{ ios_count }}</span></button>
+        {% if multi_platform %}
+        {% if android_count > 0 %}<button class="filter" type="button" data-filter="android"><i class="bi bi-android2"></i>Android <span>{{ android_count }}</span></button>{% endif %}
+        {% if ios_count > 0 %}<button class="filter" type="button" data-filter="ios"><i class="bi bi-apple"></i>iOS <span>{{ ios_count }}</span></button>{% endif %}
+        {% if windows_count > 0 %}<button class="filter" type="button" data-filter="windows"><i class="bi bi-windows"></i>Windows <span>{{ windows_count }}</span></button>{% endif %}
+        {% if steam_count > 0 %}<button class="filter" type="button" data-filter="steam"><i class="bi bi-steam"></i>Steam <span>{{ steam_count }}</span></button>{% endif %}
         {% endif %}
       </div>
       <label class="search">
@@ -54,4 +60,4 @@ permalink: /apps/
   </div>
 </section>
 
-{% include cta.html title="Building a mobile app yourself?" text="We can help with closed testing and getting your first release onto Google Play." %}
+{% include cta.html title="Have a game or app in mind?" text="We build for mobile, Windows and Steam. Tell us about your idea." %}

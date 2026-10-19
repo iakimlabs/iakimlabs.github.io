@@ -134,7 +134,7 @@
     var subj = params.get('subject');
     if (subj) {
       form.subject.value = subj;
-      var topic = /tester/i.test(subj) ? 'Become a tester' : /testing/i.test(subj) ? 'Closed testing request' : null;
+      var topic = /tester/i.test(subj) ? 'Become a tester' : null;
       if (topic) form.topic.value = topic;
     }
     form.addEventListener('submit', function (e) {

@@ -23,12 +23,18 @@ layout: default
         <div class="app-hero__text">
           <div class="d-flex flex-wrap gap-2 mb-2">
             {% if app.platforms and app.platforms.size > 1 %}
-              {% assign a_st = app.android_status | default: app.status %}
-              {% assign i_st = app.ios_status | default: 'coming-soon' %}
-              {% if app.platforms contains 'Android' %}{% include platform-status.html platform='Android' status=a_st %}{% endif %}
-              {% if app.platforms contains 'iOS' %}{% include platform-status.html platform='iOS' status=i_st %}{% endif %}
+              {% for pl in app.platforms %}
+                {% case pl %}
+                  {% when 'Android' %}{% assign st_pl = app.android_status | default: app.status %}
+                  {% when 'iOS' %}{% assign st_pl = app.ios_status | default: 'coming-soon' %}
+                  {% when 'Windows' %}{% assign st_pl = app.windows_status | default: app.status | default: 'coming-soon' %}
+                  {% when 'Steam' %}{% assign st_pl = app.steam_status | default: app.status | default: 'coming-soon' %}
+                {% endcase %}
+                {% include platform-status.html platform=pl status=st_pl %}
+              {% endfor %}
             {% else %}
-              {% include status-badge.html status=app.status %}
+              {% assign one_pl = app.platforms | first | default: 'Android' %}
+              {% include status-badge.html status=app.status platform=one_pl %}
             {% endif %}
             <span class="chip"><i class="bi {% if app.type == 'game' %}bi-controller{% else %}bi-grid-1x2{% endif %}"></i>{% if app.type == 'game' %}Game{% else %}App{% endif %}{% if app.genre %} · {{ app.genre }}{% endif %}</span>
           </div>
@@ -92,6 +98,7 @@ layout: default
               <div><dt>Type</dt><dd>{% if app.type == 'game' %}Game{% else %}App{% endif %}{% if app.genre %} · {{ app.genre }}{% endif %}</dd></div>
               {% if app.platforms %}<div><dt>Platform</dt><dd>{{ app.platforms | join: ', ' }}</dd></div>{% endif %}
               {% if app.min_android %}<div><dt>{% if app.min_ios %}Android{% else %}Requires{% endif %}</dt><dd>{% if app.min_ios %}{{ app.min_android }}+{% else %}Android {{ app.min_android }}+{% endif %}</dd></div>{% endif %}
+              {% if app.min_windows %}<div><dt>{% if app.min_android or app.min_ios %}Windows{% else %}Requires{% endif %}</dt><dd>{% if app.min_android or app.min_ios %}{{ app.min_windows }}{% else %}Windows {{ app.min_windows }}{% endif %}</dd></div>{% endif %}
               {% if app.min_ios %}<div><dt>{% if app.min_android %}iOS{% else %}Requires{% endif %}</dt><dd>{% if app.min_android %}{{ app.min_ios }}+{% else %}iOS {{ app.min_ios }}+{% endif %}</dd></div>{% endif %}
               {% if app.version %}<div><dt>Version</dt><dd>{{ app.version }}</dd></div>{% endif %}
               {% if app.updated %}<div><dt>Updated</dt><dd>{{ app.updated | date: '%b %-d, %Y' }}</dd></div>{% endif %}
@@ -103,7 +110,8 @@ layout: default
               <a href="{{ app.url | append: 'privacy/' | relative_url }}"><i class="bi bi-shield-lock"></i>Privacy policy</a>
               <a href="mailto:{{ app.support_email | default: site.email }}?subject={{ app.title | uri_escape }}%20support"><i class="bi bi-life-preserver"></i>Support</a>
               {% assign a_live = app.android_status | default: app.status %}
-              {% if a_live == 'live' %}<a href="{{ play_url }}" rel="noopener"><i class="bi bi-google-play"></i>Google Play page</a>{% endif %}
+              {% if a_live == 'live' and play_url %}<a href="{{ play_url }}" rel="noopener"><i class="bi bi-google-play"></i>Google Play page</a>{% endif %}
+              {% if app.steam_url %}<a href="{{ app.steam_url }}" rel="noopener"><i class="bi bi-steam"></i>Steam page</a>{% endif %}
               {% if app.ios_status == 'live' and app.ios_url %}<a href="{{ app.ios_url }}" rel="noopener"><i class="bi bi-apple"></i>App Store page</a>{% endif %}
             </div>
           </div>
