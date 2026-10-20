@@ -272,6 +272,7 @@ a { text-underline-offset: .2em; }
 }
 .float-chip i { color: var(--brand-ink); }
 .float-chip--a { top: 12%; left: -4%; }
+.float-chip--ios { top: 29%; right: -3%; animation-delay: -1s; }
 .float-chip--b { top: 46%; right: -6%; animation-delay: -2s; }
 .float-chip--c { bottom: -2%; left: -2%; animation-delay: -4s; }
 .float-chip--d { bottom: 14%; right: -4%; animation-delay: -6s; }
